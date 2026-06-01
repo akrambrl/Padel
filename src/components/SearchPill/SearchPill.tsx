@@ -1,17 +1,22 @@
 import styles from './SearchPill.module.css';
 
 type SearchPillProps = {
-  location?: string;
-  onClick?: () => void;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
 };
 
 /**
- * Barre de recherche (style Anybuddy) : pilule gris clair, loupe + lieu à
- * gauche, icônes "localiser" et "favori" à droite.
+ * Barre de recherche (style Anybuddy) : pilule gris clair avec un vrai champ
+ * de saisie (loupe à gauche, icônes "localiser"/"favori" à droite).
  */
-export function SearchPill({ location = 'Casablanca, Maârif', onClick }: SearchPillProps) {
+export function SearchPill({
+  value,
+  onChange,
+  placeholder = 'Rechercher un club, une ville…',
+}: SearchPillProps) {
   return (
-    <button type="button" className={styles.search} onClick={onClick}>
+    <div className={styles.search}>
       <svg
         className={styles.glass}
         width="18"
@@ -26,23 +31,43 @@ export function SearchPill({ location = 'Casablanca, Maârif', onClick }: Search
         <circle cx="11" cy="11" r="7" />
         <path d="m21 21-4-4" />
       </svg>
-      <span className={styles.loc}>{location}</span>
-      <span className={styles.icons}>
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.9"
-          strokeLinejoin="round"
-          aria-hidden="true"
+
+      <input
+        type="text"
+        className={styles.input}
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        aria-label="Rechercher un club"
+      />
+
+      {value ? (
+        <button
+          type="button"
+          className={styles.clear}
+          onClick={() => onChange('')}
+          aria-label="Effacer"
         >
-          <path d="M21 3 3 10.5l7 2.5 2.5 7L21 3Z" />
-        </svg>
-        <span className={styles.sep} />
-        <span className={styles.heart}>♡</span>
-      </span>
-    </button>
+          ✕
+        </button>
+      ) : (
+        <span className={styles.icons}>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.9"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 3 3 10.5l7 2.5 2.5 7L21 3Z" />
+          </svg>
+          <span className={styles.sep} />
+          <span className={styles.heart}>♡</span>
+        </span>
+      )}
+    </div>
   );
 }

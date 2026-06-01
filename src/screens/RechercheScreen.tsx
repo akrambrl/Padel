@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { SearchPill, DayStrip, ClubCard, Chip, COURT_GRADIENTS } from '../components';
 import { CLUBS, DEMO_DAYS, type Club } from '../data/clubs';
 import styles from './RechercheScreen.module.css';
@@ -7,9 +7,24 @@ type RechercheScreenProps = {
   onOpenClub: (club: Club) => void;
 };
 
-/** Écran d'accueil "Recherche" : entête + carte de recherche + liste des clubs. */
+/** Normalise une chaîne pour comparer sans tenir compte des accents/majuscules. */
+function norm(s: string) {
+  return s
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase();
+}
+
+/** Écran d'accueil "Recherche" : entête + recherche + filtres + liste des clubs. */
 export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
   const [day, setDay] = useState(0);
+  const [query, setQuery] = useState('');
+
+  const results = useMemo(() => {
+    const q = norm(query.trim());
+    if (!q) return CLUBS;
+    return CLUBS.filter((c) => norm(`${c.name} ${c.location} ${c.type}`).includes(q));
+  }, [query]);
 
   return (
     <div className={styles.screen}>
@@ -26,7 +41,7 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
       </header>
 
       <div className={styles.searchCard}>
-        <SearchPill />
+        <SearchPill value={query} onChange={setQuery} />
         <div className={styles.days}>
           <DayStrip days={DEMO_DAYS} activeIndex={day} onChange={setDay} tone="light" />
         </div>
@@ -40,15 +55,22 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
       </div>
 
       <div className={styles.list}>
-        {CLUBS.map((club, i) => (
-          <ClubCard
-            key={club.id}
-            club={club}
-            gradient={COURT_GRADIENTS[i % COURT_GRADIENTS.length]}
-            delay={i * 65}
-            onClick={onOpenClub}
-          />
-        ))}
+        {results.length > 0 ? (
+          results.map((club, i) => (
+            <ClubCard
+              key={club.id}
+              club={club}
+              gradient={COURT_GRADIENTS[i % COURT_GRADIENTS.length]}
+              delay={i * 65}
+              onClick={onOpenClub}
+            />
+          ))
+        ) : (
+          <div className={styles.empty}>
+            <div className={styles.emptyIcon}>🔍</div>
+            <p>Aucun club trouvé pour «&nbsp;{query.trim()}&nbsp;»</p>
+          </div>
+        )}
       </div>
     </div>
   );
