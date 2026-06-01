@@ -21,10 +21,20 @@
   position: relative;
 }
 
+.dimg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
 .dicon,
 .dheart {
   position: absolute;
   top: calc(16px + env(safe-area-inset-top));
+  z-index: 2;
 }
 
 .dicon {

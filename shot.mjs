@@ -3,10 +3,7 @@ const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromi
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 const page = await ctx.newPage();
 await page.goto('http://localhost:4173/', { waitUntil: 'networkidle' });
-await page.waitForTimeout(900);
-const input = page.locator('input[aria-label="Rechercher un club"]');
-await input.fill('zzz');
-await page.waitForTimeout(400);
-await page.screenshot({ path: '/tmp/search_empty.png' });
+await page.waitForTimeout(1500);
+await page.screenshot({ path: '/tmp/photos_fallback.png' });
 await browser.close();
 console.log('done');

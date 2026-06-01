@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CourtGraphic } from '../components/CourtGraphic/CourtGraphic';
 import { DayStrip, SlotGrid, Button, Heart, Chip, COURT_GRADIENTS } from '../components';
 import { CLUBS, DEMO_DAYS, DEMO_SLOTS, type Club } from '../data/clubs';
+import { PADEL_PHOTOS } from '../data/photos';
 import styles from './ClubDetail.module.css';
 
 type ClubDetailProps = {
@@ -25,13 +26,23 @@ export function ClubDetail({ club, onClose, onBooked }: ClubDetailProps) {
   const [detailDay, setDetailDay] = useState(0);
   const [slot, setSlot] = useState<string | null>(null);
 
+  const [heroError, setHeroError] = useState(false);
   const index = CLUBS.findIndex((c) => c.id === club.id);
   const hero = COURT_GRADIENTS[index % COURT_GRADIENTS.length];
+  const heroPhoto = PADEL_PHOTOS[index % PADEL_PHOTOS.length];
 
   return (
     <section className={styles.detail}>
       <div className={styles.dhero} style={{ background: hero }}>
         <CourtGraphic />
+        {!heroError && (
+          <img
+            className={styles.dimg}
+            src={heroPhoto}
+            alt={`Court de ${club.name}`}
+            onError={() => setHeroError(true)}
+          />
+        )}
         <button type="button" className={styles.dicon} onClick={onClose} aria-label="Fermer">
           ✕
         </button>

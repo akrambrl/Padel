@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { SearchPill, DayStrip, ClubCard, Chip, COURT_GRADIENTS } from '../components';
 import { CLUBS, DEMO_DAYS, type Club } from '../data/clubs';
+import { PADEL_PHOTOS } from '../data/photos';
 import styles from './RechercheScreen.module.css';
 
 type RechercheScreenProps = {
@@ -56,15 +57,19 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
 
       <div className={styles.list}>
         {results.length > 0 ? (
-          results.map((club, i) => (
-            <ClubCard
-              key={club.id}
-              club={club}
-              gradient={COURT_GRADIENTS[i % COURT_GRADIENTS.length]}
-              delay={i * 65}
-              onClick={onOpenClub}
-            />
-          ))
+          results.map((club, i) => {
+            const idx = CLUBS.indexOf(club); // index stable (photo fixe par club)
+            return (
+              <ClubCard
+                key={club.id}
+                club={club}
+                gradient={COURT_GRADIENTS[idx % COURT_GRADIENTS.length]}
+                photo={PADEL_PHOTOS[idx % PADEL_PHOTOS.length]}
+                delay={i * 65}
+                onClick={onOpenClub}
+              />
+            );
+          })
         ) : (
           <div className={styles.empty}>
             <div className={styles.emptyIcon}>🔍</div>
