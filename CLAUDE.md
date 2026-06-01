@@ -2,9 +2,9 @@
 
 > Contexte projet pour Claude Code. Garder à la racine du repo.
 > "PADOK" = nom placeholder, à renommer.
-> Direction visuelle ACTUELLE : style "Anybuddy" — fond bleu court de padel, immersif,
-> accent vert fluo, typo grasse (voir §5). L'ancien prototype clair `docs/padok-prototype-v3.html`
-> est conservé pour mémoire mais n'est plus la référence.
+> Direction visuelle ACTUELLE : COPIE du style Anybuddy réel — fond NOIR, panneaux/feuilles
+> BLANCS, accent VERT vif ; le "bleu" vient des PHOTOS de courts. Typo grasse (voir §5).
+> L'ancien prototype clair `docs/padok-prototype-v3.html` est conservé pour mémoire.
 
 ## 1. Vision
 Permettre aux joueurs de padel au Maroc de trouver et réserver un terrain en ligne. On attaque par les JOUEURS (annuaire des courts), on accumule trafic + stats, puis on s'en sert comme levier pour faire adopter aux clubs un agenda gratuit, et enfin on monétise par commission.
@@ -28,33 +28,36 @@ Hybride Planity + Anybuddy, séquencé :
 - PWA, testée en priorité sur Safari iOS.
 - Le fondateur débute sur Claude Code (venait de GitHub web) : expliquer les commandes terminal clés.
 
-## 5. SYSTÈME DE DESIGN (direction "Anybuddy" — fond bleu court de padel, immersif)
-Principes : fond bleu immersif (la couleur d'un court de padel), texte blanc, accent
-vert fluo réservé aux CTA / états actifs / prix, surfaces en "verre" translucide,
-rayons généreux, typo grasse et punchy. Source de vérité : `src/styles/tokens.css`.
+## 5. SYSTÈME DE DESIGN (COPIE du style Anybuddy réel — noir / blanc / vert)
+Principes : fond NOIR pour l'accueil, panneaux & feuilles BLANCS pour le contenu,
+accent VERT vif (CTA, jour/créneau actif, pilules). Le "bleu" vient des PHOTOS de
+courts. Cartes sombres ponctuelles (calendrier). Typo grasse, punchy.
+Source de vérité : `src/styles/tokens.css`.
 
 Tokens (CSS variables, voir `src/styles/tokens.css`) :
-- Fond : dégradé --bg-top #1568B3 → --bg-bot #0A3C70 (court de padel)
-- Texte : --ink #FFFFFF ; --muted rgba(255,255,255,.74) ; --soft rgba(255,255,255,.52)
-- Surfaces verre : --surface rgba(255,255,255,.09) ; --line rgba(255,255,255,.16)
-- --accent #2BE06A (vert fluo) ; --accent-ink #053A1D (texte foncé posé sur l'accent)
-- --deep #082C52 (barres opaques : nav, toast)
-- Ombres bleutées, rayons --r-sm 14 / --r-md 16 / --r-lg 22 / --r-pill 50
+- Fond page : --bg #0A0A0B (noir) ; cartes sombres : --card-dark #000
+- Surfaces claires : --panel #FFF ; --panel-2 #EEF0F3 (pilules) ; --panel-line #E6E8EC
+- Texte : --ink #0C0F14 (sur clair) ; --muted #8B94A3 ; --on-dark #FFF (sur sombre)
+- --accent #20DF63 (vert) ; --accent-ink #06210F (texte quasi noir sur le vert)
+- --danger #FF4D4F ("1 dispo") ; --star #FFC02E
+- Visuels de courts : dégradés "photo de court" (bleus/verts), cf. src/data/gradients.ts
+- Rayons --r-sm 14 / --r-md 18 / --r-lg 26 / --r-pill 50
 
 Typo :
 - Gros titres : "Archivo" (grotesque, poids 800-900), aspect bold/sportif.
 - UI / corps : "Manrope" (400-800).
 
 Composants clés (dans `src/components/`, 1 dossier par composant) :
-- Carte club immersive : grande photo de court (dégradé bleu + tracé), infos
-  SUPERPOSÉES en bas via un voile sombre (nom blanc 800, lieu·type muted, note en
-  chip verre, prix en vert). Distance (pill blanche) + cœur en haut.
-- Barre de recherche : pilule en verre translucide, texte blanc, loupe blanche.
-- Catégories : chips arrondis (verre) ; chip actif = pastille vert fluo, texte foncé.
-- Nav du bas : 4 onglets sur barre bleu profond translucide, actif en vert.
-- Fiche club : hero court, retour/cœur en ronds verre, titre Archivo blanc,
-  équipements en grille 2 colonnes, onglets de jour (actif vert), créneaux en grille
-  4 colonnes (sélectionné = vert), barre de résa sticky (prix à gauche, CTA vert à droite).
+- Accueil : entête noir (stats ⚡🏆 + accroche "Let's go Akram !") puis CARTE DE
+  RECHERCHE blanche = SearchPill (lieu + icônes) + DayStrip + chips de filtres.
+- Carte club (ClubCard) : grande photo de court, nom + note (★, avis, distance)
+  superposés EN HAUT, cœur en rond blanc, bandeau d'info en bas (prix/dispo).
+- Nav du bas (BottomNav) : barre BLANCHE, 4 onglets (Recherche, Matchs Publics,
+  Discussions, Profil), actif en noir.
+- Fiche club "Réserver" : hero photo (× / partage / cœur), feuille blanche, titre
+  centré + sous-titre, onglets segmentés Réserver/Infos, pilule "Padel ▾",
+  CARTE NOIRE = DayStrip (ton sombre) + SlotGrid (créneaux blancs heure+prix,
+  sélectionné = vert, "1 dispo" rouge), section "Terrains disponibles", CTA sticky vert.
 
 ## 6. Modèle de données (Supabase / Postgres)
 Principe : une seule table `bookings` partagée (source 'club' ou 'app'). La dispo se calcule (horaires − bookings), on ne stocke pas les créneaux vides.

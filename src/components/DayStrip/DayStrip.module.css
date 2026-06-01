@@ -1,0 +1,63 @@
+.strip {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.day {
+  flex: 0 0 auto;
+  min-width: 52px;
+  border: 0;
+  background: none;
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: 0.16s;
+}
+
+.dow {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.num {
+  font-weight: 800;
+  font-size: 19px;
+}
+
+/* Ton clair (sur panneau blanc) */
+.light .day {
+  color: var(--muted);
+}
+.light .day .dow {
+  color: var(--muted);
+}
+.light .day .num {
+  color: var(--ink);
+}
+
+/* Ton sombre (sur carte noire) */
+.dark .day {
+  color: var(--on-dark-muted);
+}
+.dark .day .dow {
+  color: var(--on-dark-muted);
+}
+.dark .day .num {
+  color: #fff;
+}
+
+/* Jour actif : pastille verte, texte foncé (les deux tons) */
+.on {
+  background: var(--accent);
+}
+.light .on .dow,
+.light .on .num,
+.dark .on .dow,
+.dark .on .num {
+  color: var(--accent-ink);
+}

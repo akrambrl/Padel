@@ -1,65 +1,103 @@
-/* Styles propres à la vitrine (mise en page de l'écran Explorer + fiche club).
+/* Mise en page de la vitrine (accueil Recherche + fiche Réserver, style Anybuddy).
    Les styles réutilisables vivent dans chaque composant du design system. */
 
-.hello {
-  padding: 24px 22px 0;
+/* ----- Entête sombre ----- */
+.header {
+  padding: calc(16px + env(safe-area-inset-top)) 22px 18px;
 }
 
-.hello h1 {
-  font-family: var(--font-title);
-  font-weight: 800;
-  font-size: 30px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: #fff;
-}
-
-.hello p {
-  color: var(--muted);
-  font-weight: 600;
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* Ligne de stats gamifiée (style Anybuddy) — chips colorés */
 .stats {
   display: flex;
-  gap: 9px;
-  margin-top: 14px;
+  gap: 18px;
 }
 
 .stat {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-pill);
-  padding: 7px 13px;
-  font-weight: 600;
-  font-size: 12.5px;
+  gap: 6px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
 }
 
 .stat b {
   font-weight: 800;
+}
+
+.greeting {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: -0.015em;
   color: #fff;
+  margin-top: 14px;
 }
 
-.searchWrap {
-  padding: 18px 22px 0;
+/* ----- Carte de recherche blanche ----- */
+.searchCard {
+  background: var(--panel);
+  margin: 0 14px;
+  border-radius: var(--r-lg);
+  padding: 16px 16px 18px;
+  box-shadow: var(--shadow);
 }
 
+.days {
+  margin-top: 14px;
+}
+
+.filters {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  margin-top: 14px;
+}
+
+.chip {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: var(--r-pill);
+  padding: 11px 16px;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.chipAccent {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.chipGhost {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--panel-line);
+}
+
+.chipMuted {
+  background: var(--panel-2);
+  color: var(--muted);
+}
+
+.chipIcon {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--panel-line);
+  padding: 11px 14px;
+}
+
+/* ----- Liste des clubs ----- */
 .list {
-  padding: 14px 22px 120px;
+  padding: 18px 14px 120px;
 }
 
-/* ---- Fiche club (panneau qui glisse depuis la droite) ---- */
+/* ----- Fiche club "Réserver" (feuille qui glisse) ----- */
 .detail {
   position: absolute;
   inset: 0;
   z-index: 30;
-  background: linear-gradient(170deg, var(--bg-top) 0%, var(--bg-bot) 58%, #072c52 100%);
+  background: var(--panel);
   transform: translateX(100%);
   transition: transform 0.34s cubic-bezier(0.32, 0.72, 0, 1);
   overflow-y: auto;
@@ -70,122 +108,153 @@
 }
 
 .dhero {
-  height: 320px;
+  height: 280px;
   position: relative;
 }
 
-.dback,
+.dicon,
 .dheart {
   position: absolute;
   top: calc(16px + env(safe-area-inset-top));
 }
 
-.dback {
+.dicon {
   left: 18px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(7, 38, 70, 0.55);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--line);
+  width: 38px;
+  height: 38px;
+  border: 0;
+  background: none;
   color: #fff;
-  display: grid;
-  place-items: center;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.4));
 }
 
 .dheart {
   right: 18px;
 }
 
-.dbody {
-  padding: 24px 22px 40px;
+.sheet {
+  position: relative;
+  margin-top: -26px;
+  background: var(--panel);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: 26px 22px 40px;
 }
 
-.dbody h2 {
+.sheet h2 {
   font-family: var(--font-title);
   font-weight: 800;
-  font-size: 26px;
+  font-size: 27px;
   letter-spacing: -0.02em;
-  line-height: 1.12;
-  color: #fff;
+  text-align: center;
+  color: var(--ink);
 }
 
-.dmeta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.sub {
+  text-align: center;
   color: var(--muted);
   font-weight: 700;
-  font-size: 14px;
-  margin-top: 9px;
+  font-size: 15px;
+  margin-top: 4px;
 }
 
-.dot {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--soft);
-}
-
-.star {
-  font-style: normal;
-  color: var(--star);
-}
-
-.hr {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: 22px 0;
-}
-
-.dh3 {
-  font-weight: 800;
-  font-size: 16px;
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
-  color: #fff;
-}
-
-.amen {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.amen span {
+/* Onglets segmentés Réserver / Infos club */
+.seg {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 14px;
+  gap: 6px;
+  background: var(--panel-2);
+  border-radius: var(--r-pill);
+  padding: 5px;
+  margin: 20px 0 16px;
+}
+
+.segBtn {
+  flex: 1;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 15px;
   color: var(--muted);
+  padding: 12px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
 }
 
-.amen span i {
-  font-style: normal;
-  font-size: 18px;
-  width: 24px;
-  text-align: center;
-  opacity: 0.95;
+.segOn {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
 }
 
-.daytabsWrap {
+.padelPill {
   margin-bottom: 16px;
 }
 
+/* Carte noire calendrier + créneaux */
+.calCard {
+  background: var(--card-dark);
+  border-radius: var(--r-lg);
+  padding: 16px;
+}
+
+.calLine {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 14px 0 16px;
+}
+
+.secTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--ink);
+  margin: 26px 0 14px;
+}
+
+.secIcon {
+  font-size: 18px;
+}
+
+.courtTeaser {
+  position: relative;
+  height: 150px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.courtTags {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.courtTags span {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+}
+
+/* CTA sticky */
 .bar {
   position: sticky;
   bottom: 0;
-  background: rgba(7, 38, 70, 0.9);
-  backdrop-filter: blur(16px);
-  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--panel-line);
   padding: 14px 22px calc(16px + env(safe-area-inset-bottom));
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 30px;
 }
 
 .barPrice {
@@ -195,7 +264,7 @@
 .barPrice b {
   font-size: 18px;
   font-weight: 800;
-  color: #fff;
+  color: var(--ink);
 }
 
 .barPrice small {
@@ -203,12 +272,4 @@
   color: var(--muted);
   font-size: 12px;
   font-weight: 600;
-}
-
-.demo {
-  text-align: center;
-  font-size: 11px;
-  color: var(--soft);
-  font-weight: 600;
-  padding: 0 0 4px;
 }

@@ -1,9 +1,9 @@
 .btn {
   border: 0;
   font-family: inherit;
-  font-weight: 700;
-  font-size: 15.5px;
-  padding: 16px 22px;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 17px 22px;
   border-radius: var(--r-md);
   cursor: pointer;
   transition: transform 0.16s ease, background 0.16s ease;
@@ -17,31 +17,30 @@
   width: 100%;
 }
 
-/* Primary — CTA vert fluo, texte foncé */
+/* Primary — CTA vert, texte foncé (style Anybuddy) */
 .primary {
   background: var(--accent);
   color: var(--accent-ink);
-  box-shadow: 0 12px 28px -12px rgba(43, 224, 106, 0.6);
+  box-shadow: 0 14px 30px -14px rgba(32, 223, 99, 0.65);
 }
 
 .primary:disabled {
-  background: var(--surface-strong);
-  color: var(--soft);
+  background: #e1e5ea;
+  color: var(--muted);
   box-shadow: none;
   cursor: default;
   transform: none;
 }
 
-/* Ghost — secondaire, verre translucide */
+/* Ghost — secondaire, surface claire */
 .ghost {
-  background: var(--surface);
+  background: #fff;
   color: var(--ink);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--panel-line);
 }
 
 .ghost:disabled {
-  color: var(--soft);
+  color: var(--muted);
   cursor: default;
   transform: none;
 }

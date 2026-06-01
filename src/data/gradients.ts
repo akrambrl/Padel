@@ -1,14 +1,13 @@
 /**
- * Dégradés des visuels de clubs (cycliques) — palette VARIÉE pour casser le
- * "tout bleu". Chaque court prend une couleur vive différente. Le tracé blanc
- * du court (CourtGraphic) reste lisible par-dessus, et le voile sombre en bas
- * garantit la lisibilité du texte superposé.
+ * Dégradés des visuels de clubs (cycliques) — façon "photo de court de padel"
+ * (indoor bleu lumineux, comme sur Anybuddy), avec un peu de variété.
+ * Le tracé blanc (CourtGraphic) + le voile sombre garantissent la lisibilité.
  */
 export const COURT_GRADIENTS = [
-  'linear-gradient(160deg,#13B981,#0C7C5E)', // vert émeraude
-  'linear-gradient(160deg,#FB923C,#E0631A)', // orange
-  'linear-gradient(160deg,#8B6CF6,#6332D6)', // violet
-  'linear-gradient(160deg,#2E8BD8,#155FA8)', // bleu court
-  'linear-gradient(160deg,#FB6FA0,#D63E78)', // rose
-  'linear-gradient(160deg,#16C9B0,#0E9384)', // turquoise
+  'linear-gradient(165deg,#2C6FB0,#0F2C4D)', // court bleu indoor
+  'linear-gradient(165deg,#1E88C9,#0B2138)', // bleu nuit
+  'linear-gradient(165deg,#2BA8A0,#0E3B3A)', // turquoise
+  'linear-gradient(165deg,#3A6FA0,#10243B)', // bleu acier
+  'linear-gradient(165deg,#2E9E6B,#0E3322)', // court vert
+  'linear-gradient(165deg,#2666A8,#0C1E33)', // bleu profond
 ];

@@ -5,10 +5,9 @@ App joueur (Phase 1) : trouver un club de padel autour de soi et envoyer une
 backend **Supabase** (à brancher), déploiement **Vercel**.
 
 > Le contexte produit complet est dans [`CLAUDE.md`](./CLAUDE.md).
-> Direction visuelle : style « Anybuddy » — **fond bleu court de padel**, immersif,
-> accent **vert fluo**, typo grasse (Archivo). Les tokens sont dans `src/styles/tokens.css`.
-> L'ancien prototype clair [`docs/padok-prototype-v3.html`](./docs/padok-prototype-v3.html)
-> est conservé pour mémoire.
+> Direction visuelle : **copie du style Anybuddy** — fond **noir**, panneaux **blancs**,
+> accent **vert** vif ; le bleu vient des **photos de courts**. Typo grasse (Archivo).
+> Les tokens sont dans `src/styles/tokens.css`.
 
 ## Démarrer (commandes terminal)
 
@@ -33,21 +32,19 @@ dans **`src/styles/tokens.css`** (la source de vérité visuelle).
 | Composant      | Rôle |
 |----------------|------|
 | `PhoneFrame`   | Cadre mobile (max 440px) qui contient l'écran |
-| `TopBar`       | Barre du haut avec la marque `pad·ok` |
-| `SearchPill`   | Barre de recherche en pilule |
-| `CategoryBar`  | Filtres horizontaux (Tous, Indoor, Outdoor…) |
-| `ClubCard`     | Carte club « photo-forward » (visuel + infos + prix) |
+| `SearchPill`   | Barre de recherche (lieu + icônes), pilule gris clair |
+| `DayStrip`     | Sélecteur de jours (ton clair ou sombre), actif en vert |
+| `ClubCard`     | Carte club : photo de court + nom/note superposés + bandeau |
 | `CourtGraphic` | Visuel de terrain stylisé (en attendant les vraies photos) |
-| `Heart`        | Bouton favori ♡ / ♥ |
-| `Pill`         | Petit badge (ex : « 📍 1.4 km ») |
-| `Button`       | CTA accent / bouton secondaire |
-| `BottomNav`    | Navigation 4 onglets (Explorer, Carte, Favoris, Profil) |
-| `DayTabs`      | Sélecteur de jour |
-| `SlotGrid`     | Grille de créneaux horaires |
+| `Heart`        | Bouton favori ♡ / ♥ (rond blanc ou posé sur photo) |
+| `Button`       | CTA vert / bouton secondaire |
+| `BottomNav`    | Navigation blanche 4 onglets (Recherche, Matchs Publics, Discussions, Profil) |
+| `SlotGrid`     | Grille de créneaux (heure + prix), sélectionné en vert |
 | `Toast`        | Confirmation en bas d'écran |
 
 `src/App.tsx` est une **vitrine** qui assemble ces composants pour reproduire
-l'écran Explorer + la fiche club (données fictives dans `src/data/clubs.ts`).
+l'accueil **Recherche** + la fiche club **Réserver** (données fictives dans
+`src/data/clubs.ts`).
 
 ## Prochaines étapes (voir CLAUDE.md §7)
 

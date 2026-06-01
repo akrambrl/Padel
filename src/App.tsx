@@ -1,34 +1,35 @@
 import { useState } from 'react';
 import {
   PhoneFrame,
-  TopBar,
   SearchPill,
-  CategoryBar,
-  DEFAULT_CATEGORIES,
+  DayStrip,
   ClubCard,
   BottomNav,
-  DayTabs,
   SlotGrid,
   Button,
   Heart,
   Toast,
   useToast,
+  DEFAULT_TABS,
   COURT_GRADIENTS,
 } from './components';
 import { CourtGraphic } from './components/CourtGraphic/CourtGraphic';
-import { CLUBS, DEMO_SLOTS, type Club } from './data/clubs';
+import { CLUBS, DEMO_DAYS, DEMO_SLOTS, type Club } from './data/clubs';
 import styles from './App.module.css';
 
 /**
- * Vitrine du design system PADOK : reproduit l'écran Explorer (style premium
- * clair) et la fiche club avec créneaux. Démo des composants — données fictives.
- * Servira de base aux vrais écrans connectés à Supabase (Phase 1).
+ * Vitrine du design system PADOK (style Anybuddy réel) :
+ * - Accueil "Recherche" : entête sombre + carte de recherche blanche
+ *   (lieu, jours, filtres) + cartes club photo, nav blanche.
+ * - Fiche club "Réserver" : feuille blanche, calendrier sur carte noire,
+ *   créneaux blancs (vert = sélectionné).
+ * Données fictives — base des vrais écrans connectés à Supabase (Phase 1).
  */
 export default function App() {
-  const [category, setCategory] = useState('all');
-  const [tab, setTab] = useState('explore');
-  const [openClub, setOpenClub] = useState<Club | null>(null);
+  const [tab, setTab] = useState('recherche');
   const [day, setDay] = useState(0);
+  const [openClub, setOpenClub] = useState<Club | null>(null);
+  const [detailDay, setDetailDay] = useState(1);
   const [slot, setSlot] = useState<string | null>(null);
   const { toast, props: toastProps } = useToast();
 
@@ -38,7 +39,7 @@ export default function App() {
   function open(club: Club) {
     setOpenClub(club);
     setSlot(null);
-    setDay(0);
+    setDetailDay(1);
   }
 
   function book() {
@@ -49,39 +50,35 @@ export default function App() {
 
   return (
     <PhoneFrame>
-      <TopBar />
-
-      <div className={styles.hello}>
-        <h1>
-          Bonsoir Akram.
-          <br />
-          Où veux-tu jouer&nbsp;?
-        </h1>
-        <p>12 clubs de padel autour de Casablanca.</p>
-
+      {/* ----- Entête sombre : stats + accroche ----- */}
+      <header className={styles.header}>
         <div className={styles.stats}>
-          <span className={styles.stat} style={{ color: 'var(--c-yellow)' }}>
+          <span className={styles.stat}>
             ⚡ <b>6</b>
           </span>
-          <span className={styles.stat} style={{ color: 'var(--c-orange)' }}>
+          <span className={styles.stat}>
             🏆 <b>0</b>
           </span>
-          <span className={styles.stat} style={{ color: 'var(--c-violet)' }}>
-            Niveau <b>NC</b>
-          </span>
+        </div>
+        <h1 className={styles.greeting}>Let&apos;s go Akram&nbsp;! 🔥</h1>
+      </header>
+
+      {/* ----- Carte de recherche blanche : lieu + jours + filtres ----- */}
+      <div className={styles.searchCard}>
+        <SearchPill />
+        <div className={styles.days}>
+          <DayStrip days={DEMO_DAYS} activeIndex={day} onChange={setDay} tone="light" />
+        </div>
+        <div className={`${styles.filters} no-scrollbar`}>
+          <button className={`${styles.chip} ${styles.chipAccent}`}>Padel ▾</button>
+          <button className={`${styles.chip} ${styles.chipGhost}`}>🕐 Quand ▾</button>
+          <button className={`${styles.chip} ${styles.chipMuted}`}>int.</button>
+          <button className={`${styles.chip} ${styles.chipMuted}`}>ext.</button>
+          <button className={`${styles.chip} ${styles.chipIcon}`}>⚙︎</button>
         </div>
       </div>
 
-      <div className={styles.searchWrap}>
-        <SearchPill />
-      </div>
-
-      <CategoryBar
-        categories={DEFAULT_CATEGORIES}
-        activeId={category}
-        onChange={setCategory}
-      />
-
+      {/* ----- Liste des clubs ----- */}
       <div className={styles.list}>
         {CLUBS.map((club, i) => (
           <ClubCard
@@ -94,9 +91,9 @@ export default function App() {
         ))}
       </div>
 
-      <BottomNav activeId={tab} onChange={setTab} />
+      <BottomNav tabs={DEFAULT_TABS} activeId={tab} onChange={setTab} />
 
-      {/* Fiche club (panneau qui glisse depuis la droite) */}
+      {/* ----- Fiche club "Réserver" (feuille qui glisse) ----- */}
       <section className={`${styles.detail} ${openClub ? styles.show : ''}`}>
         {openClub && (
           <>
@@ -104,64 +101,57 @@ export default function App() {
               <CourtGraphic />
               <button
                 type="button"
-                className={styles.dback}
+                className={styles.dicon}
                 onClick={() => setOpenClub(null)}
-                aria-label="Retour"
+                aria-label="Fermer"
               >
-                ←
+                ✕
               </button>
               <div className={styles.dheart}>
                 <Heart variant="round" />
               </div>
             </div>
 
-            <div className={styles.dbody}>
+            <div className={styles.sheet}>
               <h2>{openClub.name}</h2>
-              <div className={styles.dmeta}>
-                <span>
-                  <i className={styles.star}>★</i> {openClub.rating}
-                </span>
-                <span className={styles.dot} />
-                <span>{openClub.location}</span>
+              <div className={styles.sub}>{openClub.location}</div>
+
+              {/* Onglets Réserver / Infos club */}
+              <div className={styles.seg}>
+                <button className={`${styles.segBtn} ${styles.segOn}`}>📅 Réserver</button>
+                <button className={styles.segBtn}>Infos club</button>
               </div>
 
-              <hr className={styles.hr} />
+              <button className={`${styles.chip} ${styles.chipAccent} ${styles.padelPill}`}>
+                Padel ▾
+              </button>
 
-              <div className={styles.dh3}>Ce que propose le club</div>
-              <div className={styles.amen}>
-                <span>
-                  <i>🎾</i> {openClub.courts} terrains
-                </span>
-                <span>
-                  <i>🚿</i> Vestiaires
-                </span>
-                <span>
-                  <i>🅿️</i> Parking gratuit
-                </span>
-                <span>
-                  <i>☕</i> Cafétéria
-                </span>
-                <span>
-                  <i>💡</i> Éclairage LED
-                </span>
-                <span>
-                  <i>🛍️</i> Location raquettes
-                </span>
-              </div>
-
-              <hr className={styles.hr} />
-
-              <div className={styles.dh3}>Disponibilités</div>
-              <div className={styles.daytabsWrap}>
-                <DayTabs
-                  days={['Aujourd’hui', 'Demain', 'Jeudi']}
-                  activeIndex={day}
-                  onChange={setDay}
+              {/* Calendrier + créneaux sur carte noire */}
+              <div className={styles.calCard}>
+                <DayStrip
+                  days={DEMO_DAYS.slice(1)}
+                  activeIndex={detailDay - 1}
+                  onChange={(i) => setDetailDay(i + 1)}
+                  tone="dark"
                 />
+                <div className={styles.calLine} />
+                <SlotGrid slots={DEMO_SLOTS} selected={slot} onSelect={setSlot} />
               </div>
-              <SlotGrid slots={DEMO_SLOTS} selected={slot} onSelect={setSlot} />
+
+              <div className={styles.secTitle}>
+                <span className={styles.secIcon}>🟩</span> Terrains disponibles
+              </div>
+              <div className={styles.courtTeaser} style={{ background: heroGradient }}>
+                <CourtGraphic />
+                <div className={styles.courtTags}>
+                  <span>Intérieur</span>
+                  <span>Éclairé</span>
+                  <span>Moquette</span>
+                </div>
+              </div>
             </div>
 
+            {/* CTA sticky quand un créneau est choisi */}
             <div className={styles.bar}>
               <div className={styles.barPrice}>
                 <b>{openClub.price} DH</b>
@@ -176,7 +166,6 @@ export default function App() {
       </section>
 
       <Toast {...toastProps} />
-      <div className={styles.demo}>Prototype · données fictives</div>
     </PhoneFrame>
   );
 }

@@ -1,0 +1,14 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+const ctx = await browser.newContext({ viewport: { width: 430, height: 932 }, deviceScaleFactor: 2 });
+const page = await ctx.newPage();
+await page.goto('http://localhost:4173/', { waitUntil: 'networkidle' });
+await page.waitForTimeout(1300);
+await page.screenshot({ path: '/tmp/home4.png' });
+await page.locator('article').first().click();
+await page.waitForTimeout(700);
+await page.locator('button:has-text("09h")').first().click();
+await page.waitForTimeout(400);
+await page.screenshot({ path: '/tmp/detail4.png' });
+await browser.close();
+console.log('done');

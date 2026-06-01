@@ -1,55 +1,47 @@
 /* =====================================================================
-   PADOK — Design tokens (direction "Anybuddy")
-   Fond bleu "court de padel", immersif. Accent vert fluo, typo grasse.
-   Tout le texte de contenu est blanc sur le bleu ; les surfaces sont en
-   "verre" translucide ; le vert ne sert qu'aux CTA / états actifs.
+   PADOK — Design tokens (style Anybuddy réel)
+   Fond noir, panneaux/feuilles blancs, accent VERT vif. Le "bleu" vient
+   des photos de courts. Titres gras (Archivo), UI Manrope.
    ===================================================================== */
 :root {
-  /* Fond bleu court de padel (dégradé du haut vers le bas) */
-  --bg-top: #14538c;
-  --bg-bot: #0a2e54;
-  --bg: var(--bg-bot); /* fallback couleur unie */
+  /* Page sombre (écran d'accueil) */
+  --bg: #0a0a0b;
+  --bg-2: #141416;
 
-  /* Texte (sur fond bleu) */
-  --ink: #ffffff;                       /* texte principal */
-  --muted: rgba(255, 255, 255, 0.74);   /* secondaire */
-  --soft: rgba(255, 255, 255, 0.52);    /* tertiaire / inactif */
+  /* Surfaces claires (panneaux, feuilles, cartes) */
+  --panel: #ffffff;
+  --panel-2: #eef0f3;     /* pilules / champs gris clair */
+  --panel-line: #e6e8ec;  /* filets sur clair */
 
-  /* Surfaces "verre" translucides */
-  --surface: rgba(255, 255, 255, 0.09);
-  --surface-strong: rgba(255, 255, 255, 0.15);
-  --line: rgba(255, 255, 255, 0.16);
+  /* Cartes sombres (calendrier, joueurs) */
+  --card-dark: #000000;
 
-  /* Accent vert fluo (CTA, sélection, marque) */
-  --accent: #2be06a;
-  --accent-ink: #053a1d;                /* texte foncé posé sur l'accent */
-  --accent-soft: rgba(43, 224, 106, 0.16);
+  /* Texte */
+  --ink: #0c0f14;                       /* texte foncé sur clair */
+  --muted: #8b94a3;                     /* gris secondaire */
+  --on-dark: #ffffff;                   /* texte clair sur sombre */
+  --on-dark-muted: rgba(255, 255, 255, 0.66);
 
-  /* Palette secondaire (pour varier les couleurs, casser le "tout bleu") */
-  --c-green: #2be06a;
-  --c-orange: #fb923c;
-  --c-violet: #8b6cf6;
-  --c-pink: #fb6fa0;
-  --c-yellow: #ffd23f;
-  --c-teal: #16c9b0;
-  --star: #ffd23f;
+  /* Accent vert Anybuddy */
+  --accent: #20df63;
+  --accent-ink: #06210f;                /* texte (quasi noir) sur le vert */
+  --accent-soft: rgba(32, 223, 99, 0.16);
+  --danger: #ff4d4f;                    /* "1 dispo" */
+  --star: #ffc02e;                      /* étoiles */
 
-  /* Bleu profond pour barres opaques (nav, toast) */
-  --deep: #082c52;
-
-  /* Ombres (bleutées, plus marquées sur fond foncé) */
-  --shadow: 0 16px 40px -18px rgba(3, 18, 38, 0.7);
-  --shadow-sm: 0 8px 22px -12px rgba(3, 18, 38, 0.6);
-  --shadow-lg: 0 40px 90px -40px rgba(3, 14, 30, 0.8);
-
-  /* Rayons (plus généreux, esprit Anybuddy) */
+  /* Rayons */
   --r-sm: 14px;
-  --r-md: 16px;
-  --r-lg: 22px;
+  --r-md: 18px;
+  --r-lg: 26px;
   --r-pill: 50px;
 
+  /* Ombres */
+  --shadow: 0 12px 30px -16px rgba(8, 12, 20, 0.5);
+  --shadow-sm: 0 8px 20px -14px rgba(8, 12, 20, 0.45);
+  --shadow-lg: 0 40px 90px -40px rgba(0, 0, 0, 0.6);
+
   /* Typographie */
-  --font-title: 'Archivo', system-ui, sans-serif; /* gros titres bold */
+  --font-title: 'Archivo', system-ui, sans-serif;
   --font-ui: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Largeur "téléphone" (PWA mobile-first) */

@@ -6,12 +6,11 @@
   width: 100%;
   max-width: var(--phone-max);
   z-index: 20;
-  background: rgba(7, 38, 70, 0.82);
-  backdrop-filter: blur(18px);
-  border-top: 1px solid var(--line);
+  background: #fff;
+  border-top: 1px solid var(--panel-line);
   display: flex;
   justify-content: space-around;
-  padding: 11px 14px calc(13px + env(safe-area-inset-bottom));
+  padding: 10px 14px calc(12px + env(safe-area-inset-bottom));
 }
 
 .nav button {
@@ -21,22 +20,25 @@
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  color: var(--soft);
-  font-weight: 600;
-  font-size: 10.5px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 11px;
   cursor: pointer;
 }
 
 .ic {
   font-size: 20px;
-  opacity: 0.75;
+  filter: grayscale(0.5);
+  opacity: 0.65;
   transition: 0.2s;
 }
 
+/* Onglet actif : noir, icône pleine */
 .on {
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .on .ic {
+  filter: none;
   opacity: 1;
 }

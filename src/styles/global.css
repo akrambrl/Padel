@@ -18,7 +18,7 @@ body {
 body {
   font-family: var(--font-ui);
   color: var(--ink);
-  background: #06243f; /* bleu très foncé derrière le cadre téléphone */
+  background: #000000; /* noir derrière le cadre téléphone */
   display: flex;
   justify-content: center;
   align-items: flex-start;

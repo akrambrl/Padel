@@ -11,6 +11,8 @@ export type Club = {
   type: string;
   courts: number;
   rating: number;
+  /** Nombre d'avis. */
+  avis: number;
   /** Prix indicatif du créneau 1h30, en dirhams. */
   price: number;
   distanceKm: number;
@@ -24,6 +26,7 @@ export const CLUBS: Club[] = [
     type: 'Indoor · Outdoor',
     courts: 6,
     rating: 4.9,
+    avis: 102,
     price: 300,
     distanceKm: 1.4,
   },
@@ -34,6 +37,7 @@ export const CLUBS: Club[] = [
     type: 'Indoor · le plus grand',
     courts: 10,
     rating: 4.8,
+    avis: 67,
     price: 320,
     distanceKm: 8.0,
   },
@@ -44,6 +48,7 @@ export const CLUBS: Club[] = [
     type: 'Indoor',
     courts: 4,
     rating: 4.7,
+    avis: 41,
     price: 280,
     distanceKm: 3.1,
   },
@@ -54,6 +59,7 @@ export const CLUBS: Club[] = [
     type: 'Outdoor · vue mer',
     courts: 3,
     rating: 4.6,
+    avis: 25,
     price: 250,
     distanceKm: 5.2,
   },
@@ -64,6 +70,7 @@ export const CLUBS: Club[] = [
     type: 'Indoor · Outdoor',
     courts: 5,
     rating: 4.5,
+    avis: 38,
     price: 230,
     distanceKm: 6.8,
   },
@@ -74,21 +81,36 @@ export const CLUBS: Club[] = [
     type: 'Outdoor',
     courts: 4,
     rating: 4.8,
+    avis: 54,
     price: 340,
     distanceKm: 4.0,
   },
 ];
 
-/** Créneaux indicatifs (indispo = déjà réservé) pour la démo de fiche club. */
+/** Jours affichés dans le sélecteur (démo : à partir du Lun. 1). */
+export const DEMO_DAYS = [
+  { dow: 'Lun.', day: 1 },
+  { dow: 'Mar.', day: 2 },
+  { dow: 'Mer.', day: 3 },
+  { dow: 'Jeu.', day: 4 },
+  { dow: 'Ven.', day: 5 },
+  { dow: 'Sam.', day: 6 },
+  { dow: 'Dim.', day: 7 },
+  { dow: 'Lun.', day: 8 },
+];
+
+/** Créneaux indicatifs (prix + éventuelle mention "1 dispo") pour la fiche club. */
 export const DEMO_SLOTS = [
-  { time: '08:00' },
-  { time: '09:30' },
-  { time: '11:00', off: true },
-  { time: '12:30' },
-  { time: '14:00' },
-  { time: '15:30', off: true },
-  { time: '17:00' },
-  { time: '18:30', off: true },
-  { time: '20:00' },
-  { time: '21:30' },
+  { time: '09h', price: '280 DH' },
+  { time: '10h', price: '280 DH' },
+  { time: '11h', price: '280 DH' },
+  { time: '12h', price: '280 DH', note: '1 dispo' },
+  { time: '13h', price: '280 DH' },
+  { time: '14h', price: '280 DH' },
+  { time: '15h', price: '280 DH' },
+  { time: '16h', price: '280 DH' },
+  { time: '17h', price: '320 DH' },
+  { time: '18h', price: '320 DH', note: '1 dispo' },
+  { time: '20h', price: '320 DH' },
+  { time: '21h', price: '320 DH' },
 ];

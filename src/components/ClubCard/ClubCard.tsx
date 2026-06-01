@@ -1,6 +1,5 @@
 import { CourtGraphic } from '../CourtGraphic/CourtGraphic';
 import { Heart } from '../Heart/Heart';
-import { Pill } from '../Pill/Pill';
 import type { Club } from '../../data/clubs';
 import styles from './ClubCard.module.css';
 
@@ -13,8 +12,8 @@ type ClubCardProps = {
 };
 
 /**
- * Carte club immersive (style Anybuddy) : grande photo de court, infos
- * superposées en bas (nom, note, type), prix en vert. Distance + favori en haut.
+ * Carte club (style Anybuddy) : grande photo de court, nom + note superposés
+ * en haut, cœur en rond blanc, et un bandeau d'info en bas (créneaux / prix).
  */
 export function ClubCard({ club, gradient, delay = 0, onClick }: ClubCardProps) {
   return (
@@ -25,24 +24,24 @@ export function ClubCard({ club, gradient, delay = 0, onClick }: ClubCardProps) 
     >
       <div className={styles.photo} style={{ background: gradient }}>
         <CourtGraphic />
+
         <div className={styles.top}>
-          <Pill floating>📍 {club.distanceKm} km</Pill>
-          <Heart />
+          <div className={styles.head}>
+            <h3>{club.name}</h3>
+            <div className={styles.rate}>
+              <i className={styles.star}>★</i> {club.rating}{' '}
+              <span className={styles.avis}>({club.avis} avis)</span>
+              <span className={styles.dist}>↗ {club.distanceKm} km</span>
+            </div>
+          </div>
+          <Heart variant="round" />
         </div>
 
-        <div className={styles.overlay}>
-          <h3>{club.name}</h3>
-          <div className={styles.sub}>
-            {club.location} · {club.type}
-          </div>
-          <div className={styles.row}>
-            <span className={styles.rate}>
-              <i className={styles.star}>★</i> {club.rating}
-            </span>
-            <span className={styles.price}>
-              <b>{club.price} DH</b> / 1h30
-            </span>
-          </div>
+        <div className={styles.strip}>
+          <span>
+            Dispo aujourd’hui · dès <b>{club.price} DH</b>
+          </span>
+          <span className={styles.chev}>›</span>
         </div>
       </div>
     </article>

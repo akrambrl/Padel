@@ -1,6 +1,6 @@
 .card {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   cursor: pointer;
   opacity: 0;
   transform: translateY(14px);
@@ -16,65 +16,48 @@
 
 .photo {
   position: relative;
-  height: 250px;
+  height: 300px;
   border-radius: var(--r-lg);
   overflow: hidden;
   box-shadow: var(--shadow);
 }
 
+/* Voile sombre en haut pour la lisibilité du nom/note */
+.photo::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 130px;
+  background: linear-gradient(rgba(3, 12, 24, 0.72), transparent);
+}
+
 .top {
   position: absolute;
-  top: 14px;
-  left: 14px;
-  right: 14px;
+  top: 16px;
+  left: 18px;
+  right: 16px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 10px;
 }
 
-/* Voile sombre en bas pour la lisibilité du texte sur la photo */
-.overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 18px 18px 16px;
-  background: linear-gradient(transparent, rgba(4, 22, 44, 0.86));
-}
-
-.overlay h3 {
+.head h3 {
   font-family: var(--font-title);
   font-weight: 800;
-  font-size: 20px;
+  font-size: 23px;
   letter-spacing: -0.01em;
   color: #fff;
 }
 
-.sub {
-  color: rgba(255, 255, 255, 0.82);
-  font-weight: 500;
-  font-size: 13px;
-  margin-top: 3px;
-}
-
-.row {
+.rate {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 12px;
-}
-
-.rate {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(4px);
+  gap: 5px;
+  margin-top: 5px;
   color: #fff;
-  font-weight: 800;
-  font-size: 13px;
-  padding: 5px 11px;
-  border-radius: var(--r-pill);
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .star {
@@ -82,13 +65,42 @@
   color: var(--star);
 }
 
-.price {
-  color: var(--accent);
+.avis {
+  color: rgba(255, 255, 255, 0.82);
   font-weight: 600;
-  font-size: 13px;
 }
 
-.price b {
+.dist {
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+/* Bandeau d'info en bas (sur voile sombre translucide) */
+.strip {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 18px;
+  border-radius: var(--r-md);
+  background: rgba(6, 16, 30, 0.55);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14.5px;
+}
+
+.strip b {
   font-weight: 800;
-  font-size: 16px;
+}
+
+.chev {
+  font-size: 22px;
+  font-weight: 700;
+  opacity: 0.9;
 }
