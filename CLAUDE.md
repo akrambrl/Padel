@@ -2,7 +2,9 @@
 
 > Contexte projet pour Claude Code. Garder à la racine du repo.
 > "PADOK" = nom placeholder, à renommer.
-> Référence visuelle : le fichier `padok-prototype-v3.html` (à mettre dans le repo). Reproduire SON look exact.
+> Direction visuelle ACTUELLE : style "Anybuddy" — fond bleu court de padel, immersif,
+> accent vert fluo, typo grasse (voir §5). L'ancien prototype clair `docs/padok-prototype-v3.html`
+> est conservé pour mémoire mais n'est plus la référence.
 
 ## 1. Vision
 Permettre aux joueurs de padel au Maroc de trouver et réserver un terrain en ligne. On attaque par les JOUEURS (annuaire des courts), on accumule trafic + stats, puis on s'en sert comme levier pour faire adopter aux clubs un agenda gratuit, et enfin on monétise par commission.
@@ -26,28 +28,33 @@ Hybride Planity + Anybuddy, séquencé :
 - PWA, testée en priorité sur Safari iOS.
 - Le fondateur débute sur Claude Code (venait de GitHub web) : expliquer les commandes terminal clés.
 
-## 5. SYSTÈME DE DESIGN (reproduire exactement la v3 — style épuré/premium, esprit Airbnb)
-Principes : beaucoup de blanc, photos en grand, UNE seule couleur d'accent utilisée avec parcimonie, ombres très douces, séparateurs en filet, zéro contour épais, zéro dégradé criard.
+## 5. SYSTÈME DE DESIGN (direction "Anybuddy" — fond bleu court de padel, immersif)
+Principes : fond bleu immersif (la couleur d'un court de padel), texte blanc, accent
+vert fluo réservé aux CTA / états actifs / prix, surfaces en "verre" translucide,
+rayons généreux, typo grasse et punchy. Source de vérité : `src/styles/tokens.css`.
 
-Tokens (CSS variables) :
-- --bg: #FCFCFB ; --surface: #FFFFFF
-- --ink: #1C1C1A ; --muted: #75746E ; --soft: #9E9D96
-- --line: #ECEBE7 (séparateurs filet)
-- --accent: #0F7A63 (vert profond, UNIQUEMENT prix / état sélectionné / CTA)
-- --accent-soft: #EAF4F0
-- Ombres douces : 0 10px 30px -16px rgba(28,28,26,.22)
+Tokens (CSS variables, voir `src/styles/tokens.css`) :
+- Fond : dégradé --bg-top #1568B3 → --bg-bot #0A3C70 (court de padel)
+- Texte : --ink #FFFFFF ; --muted rgba(255,255,255,.74) ; --soft rgba(255,255,255,.52)
+- Surfaces verre : --surface rgba(255,255,255,.09) ; --line rgba(255,255,255,.16)
+- --accent #2BE06A (vert fluo) ; --accent-ink #053A1D (texte foncé posé sur l'accent)
+- --deep #082C52 (barres opaques : nav, toast)
+- Ombres bleutées, rayons --r-sm 14 / --r-md 16 / --r-lg 22 / --r-pill 50
 
 Typo :
-- Titres : "Fraunces" (serif optique, poids 500-600), aspect premium/boutique.
-- UI / corps : "Manrope" (sans propre, 400-800).
+- Gros titres : "Archivo" (grotesque, poids 800-900), aspect bold/sportif.
+- UI / corps : "Manrope" (400-800).
 
-Composants clés (voir prototype) :
-- Carte club "photo-forward" : grande image arrondie (rayon ~18px) + sous l'image, minimal : nom (700), note "★ 4.8" en ligne à droite, lieu (muted), type+terrains (soft), prix en gras "300 DH /1h30". Séparateur filet entre cartes.
-- Barre de recherche en pilule (rayon 50px) avec icône loupe, ombre douce.
-- Barre de catégories horizontale, item actif souligné en bas (2px ink), icônes en emoji discrets.
-- Cœur favori sur l'image (♡ / ♥ accent).
-- Nav du bas : 4 onglets (Explorer, Carte, Favoris, Profil), icône + label, actif en couleur accent.
-- Fiche club : grande hero image, retour + cœur en ronds blancs flottants, titre Fraunces, "★ note · lieu", filets de séparation, équipements en grille 2 colonnes (icône + label), onglets de jour, créneaux en grille 4 colonnes (sélectionné = fond accent), barre de réservation sticky en bas (prix à gauche, bouton accent à droite).
+Composants clés (dans `src/components/`, 1 dossier par composant) :
+- Carte club immersive : grande photo de court (dégradé bleu + tracé), infos
+  SUPERPOSÉES en bas via un voile sombre (nom blanc 800, lieu·type muted, note en
+  chip verre, prix en vert). Distance (pill blanche) + cœur en haut.
+- Barre de recherche : pilule en verre translucide, texte blanc, loupe blanche.
+- Catégories : chips arrondis (verre) ; chip actif = pastille vert fluo, texte foncé.
+- Nav du bas : 4 onglets sur barre bleu profond translucide, actif en vert.
+- Fiche club : hero court, retour/cœur en ronds verre, titre Archivo blanc,
+  équipements en grille 2 colonnes, onglets de jour (actif vert), créneaux en grille
+  4 colonnes (sélectionné = vert), barre de résa sticky (prix à gauche, CTA vert à droite).
 
 ## 6. Modèle de données (Supabase / Postgres)
 Principe : une seule table `bookings` partagée (source 'club' ou 'app'). La dispo se calcule (horaires − bookings), on ne stocke pas les créneaux vides.

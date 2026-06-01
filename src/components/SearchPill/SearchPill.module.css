@@ -4,11 +4,13 @@
   gap: 12px;
   width: 100%;
   text-align: left;
+  color: #fff;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r-pill);
-  padding: 15px 20px;
-  box-shadow: var(--shadow);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px);
   cursor: pointer;
 }
 
@@ -23,7 +25,8 @@
 .text b {
   display: block;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 14.5px;
+  color: #fff;
 }
 
 .text small {

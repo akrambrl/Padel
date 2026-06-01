@@ -17,22 +17,22 @@
   width: 100%;
 }
 
-/* Primary — CTA accent */
+/* Primary — CTA vert fluo, texte foncé */
 .primary {
   background: var(--accent);
-  color: #fff;
-  box-shadow: var(--shadow);
+  color: var(--accent-ink);
+  box-shadow: 0 12px 28px -12px rgba(43, 224, 106, 0.6);
 }
 
 .primary:disabled {
-  background: var(--disabled);
-  color: #fff;
+  background: var(--surface-strong);
+  color: var(--soft);
   box-shadow: none;
   cursor: default;
   transform: none;
 }
 
-/* Ghost — secondaire, contour filet */
+/* Ghost — secondaire, verre translucide */
 .ghost {
   background: var(--surface);
   color: var(--ink);

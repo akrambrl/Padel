@@ -22,7 +22,7 @@ export function SearchPill({
         height="18"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#1C1C1A"
+        stroke="#ffffff"
         strokeWidth="2.4"
         strokeLinecap="round"
         aria-hidden="true"

@@ -13,8 +13,8 @@ type ClubCardProps = {
 };
 
 /**
- * Carte club "photo-forward" : grand visuel arrondi, puis infos minimales
- * (nom + note, lieu, type · terrains, prix en gras). Séparateur filet sous la carte.
+ * Carte club immersive (style Anybuddy) : grande photo de court, infos
+ * superposées en bas (nom, note, type), prix en vert. Distance + favori en haut.
  */
 export function ClubCard({ club, gradient, delay = 0, onClick }: ClubCardProps) {
   return (
@@ -25,27 +25,22 @@ export function ClubCard({ club, gradient, delay = 0, onClick }: ClubCardProps) 
     >
       <div className={styles.photo} style={{ background: gradient }}>
         <CourtGraphic />
-        <div className={styles.pill}>
+        <div className={styles.top}>
           <Pill floating>📍 {club.distanceKm} km</Pill>
-        </div>
-        <div className={styles.heart}>
           <Heart />
         </div>
-      </div>
 
-      <div className={styles.info}>
-        <div className={styles.l1}>
+        <div className={styles.overlay}>
           <h3>{club.name}</h3>
-          <div className={styles.rate}>
-            <span className={styles.st}>★</span> {club.rating}
+          <div className={styles.sub}>
+            {club.location} · {club.type}
           </div>
-        </div>
-        <div className={styles.loc}>{club.location}</div>
-        <div className={styles.ty}>
-          {club.type} · {club.courts} terrains
-        </div>
-        <div className={styles.pr}>
-          <b>{club.price} DH</b> <span>/ 1h30</span>
+          <div className={styles.row}>
+            <span className={styles.rate}>★ {club.rating}</span>
+            <span className={styles.price}>
+              <b>{club.price} DH</b> / 1h30
+            </span>
+          </div>
         </div>
       </div>
     </article>

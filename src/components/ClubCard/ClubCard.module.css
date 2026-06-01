@@ -1,15 +1,10 @@
 .card {
   display: block;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--line);
+  margin-bottom: 16px;
   cursor: pointer;
   opacity: 0;
   transform: translateY(14px);
   animation: rise 0.55s forwards;
-}
-
-.card:last-child {
-  border-bottom: 0;
 }
 
 @keyframes rise {
@@ -21,78 +16,74 @@
 
 .photo {
   position: relative;
-  height: 230px;
+  height: 250px;
   border-radius: var(--r-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
 
-.pill {
+.top {
   position: absolute;
   top: 14px;
   left: 14px;
-}
-
-.heart {
-  position: absolute;
-  top: 14px;
   right: 14px;
-}
-
-.info {
-  padding-top: 15px;
-}
-
-.l1 {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 10px;
 }
 
-.info h3 {
-  font-weight: 700;
-  font-size: 16.5px;
+/* Voile sombre en bas pour la lisibilité du texte sur la photo */
+.overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 18px 16px;
+  background: linear-gradient(transparent, rgba(4, 22, 44, 0.86));
+}
+
+.overlay h3 {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 20px;
   letter-spacing: -0.01em;
+  color: #fff;
 }
 
-.rate {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: 700;
-  font-size: 14px;
-  white-space: nowrap;
-}
-
-.st {
-  color: var(--ink);
-}
-
-.loc {
-  color: var(--muted);
+.sub {
+  color: rgba(255, 255, 255, 0.82);
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13px;
   margin-top: 3px;
 }
 
-.ty {
-  color: var(--soft);
-  font-weight: 500;
-  font-size: 13.5px;
-  margin-top: 2px;
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
 }
 
-.pr {
-  margin-top: 11px;
-  font-size: 15px;
-}
-
-.pr b {
+.rate {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(4px);
+  color: #fff;
   font-weight: 800;
+  font-size: 13px;
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
 }
 
-.pr span {
-  color: var(--muted);
-  font-weight: 500;
+.price {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.price b {
+  font-weight: 800;
+  font-size: 16px;
 }

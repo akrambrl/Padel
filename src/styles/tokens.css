@@ -1,34 +1,46 @@
 /* =====================================================================
-   PADOK — Design tokens
-   Source de vérité visuelle. Extrait du prototype v3 (style premium clair).
-   Règle d'or : beaucoup de blanc, UNE couleur d'accent (vert profond) utilisée
-   avec parcimonie (prix / sélection / CTA), ombres très douces, filets fins.
+   PADOK — Design tokens (direction "Anybuddy")
+   Fond bleu "court de padel", immersif. Accent vert fluo, typo grasse.
+   Tout le texte de contenu est blanc sur le bleu ; les surfaces sont en
+   "verre" translucide ; le vert ne sert qu'aux CTA / états actifs.
    ===================================================================== */
 :root {
-  /* Couleurs */
-  --bg: #fcfcfb;          /* fond global */
-  --surface: #ffffff;     /* cartes, barres */
-  --ink: #1c1c1a;         /* texte principal */
-  --muted: #75746e;       /* texte secondaire */
-  --soft: #9e9d96;        /* texte tertiaire / inactif */
-  --line: #ecebe7;        /* séparateurs en filet */
-  --accent: #0f7a63;      /* vert profond : prix, état sélectionné, CTA */
-  --accent-soft: #eaf4f0; /* fond accent léger */
-  --disabled: #d6d5cf;    /* boutons désactivés */
+  /* Fond bleu court de padel (dégradé du haut vers le bas) */
+  --bg-top: #1568b3;
+  --bg-bot: #0a3c70;
+  --bg: var(--bg-bot); /* fallback couleur unie */
 
-  /* Ombres douces */
-  --shadow: 0 10px 30px -16px rgba(28, 28, 26, 0.22);
-  --shadow-sm: 0 6px 18px -12px rgba(28, 28, 26, 0.25);
-  --shadow-lg: 0 40px 90px -40px rgba(28, 28, 26, 0.45);
+  /* Texte (sur fond bleu) */
+  --ink: #ffffff;                       /* texte principal */
+  --muted: rgba(255, 255, 255, 0.74);   /* secondaire */
+  --soft: rgba(255, 255, 255, 0.52);    /* tertiaire / inactif */
 
-  /* Rayons */
-  --r-sm: 12px;
-  --r-md: 14px;
-  --r-lg: 18px;
+  /* Surfaces "verre" translucides */
+  --surface: rgba(255, 255, 255, 0.09);
+  --surface-strong: rgba(255, 255, 255, 0.15);
+  --line: rgba(255, 255, 255, 0.16);
+
+  /* Accent vert fluo (CTA, sélection, marque) */
+  --accent: #2be06a;
+  --accent-ink: #053a1d;                /* texte foncé posé sur l'accent */
+  --accent-soft: rgba(43, 224, 106, 0.16);
+
+  /* Bleu profond pour barres opaques (nav, toast) */
+  --deep: #082c52;
+
+  /* Ombres (bleutées, plus marquées sur fond foncé) */
+  --shadow: 0 16px 40px -18px rgba(3, 18, 38, 0.7);
+  --shadow-sm: 0 8px 22px -12px rgba(3, 18, 38, 0.6);
+  --shadow-lg: 0 40px 90px -40px rgba(3, 14, 30, 0.8);
+
+  /* Rayons (plus généreux, esprit Anybuddy) */
+  --r-sm: 14px;
+  --r-md: 16px;
+  --r-lg: 22px;
   --r-pill: 50px;
 
   /* Typographie */
-  --font-title: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-title: 'Archivo', system-ui, sans-serif; /* gros titres bold */
   --font-ui: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Largeur "téléphone" (PWA mobile-first) */

@@ -14,6 +14,6 @@
 .floating {
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(4px);
-  color: var(--ink);
+  color: #0a3c70;
   box-shadow: var(--shadow-sm);
 }

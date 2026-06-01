@@ -3,7 +3,9 @@
   width: 100%;
   max-width: var(--phone-max);
   min-height: 100vh;
-  background: var(--bg);
+  /* Fond bleu "court de padel", immersif */
+  background: linear-gradient(170deg, var(--bg-top) 0%, var(--bg-bot) 58%, #072c52 100%);
+  background-attachment: local;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
 }

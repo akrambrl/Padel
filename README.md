@@ -5,8 +5,10 @@ App joueur (Phase 1) : trouver un club de padel autour de soi et envoyer une
 backend **Supabase** (à brancher), déploiement **Vercel**.
 
 > Le contexte produit complet est dans [`CLAUDE.md`](./CLAUDE.md).
-> La référence visuelle est le prototype [`docs/padok-prototype-v3.html`](./docs/padok-prototype-v3.html)
-> (style premium clair, esprit Airbnb). Le design system le reproduit fidèlement.
+> Direction visuelle : style « Anybuddy » — **fond bleu court de padel**, immersif,
+> accent **vert fluo**, typo grasse (Archivo). Les tokens sont dans `src/styles/tokens.css`.
+> L'ancien prototype clair [`docs/padok-prototype-v3.html`](./docs/padok-prototype-v3.html)
+> est conservé pour mémoire.
 
 ## Démarrer (commandes terminal)
 

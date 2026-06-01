@@ -14,19 +14,21 @@
   cursor: pointer;
   transition: 0.16s;
   background: var(--surface);
-  color: var(--ink);
+  color: #fff;
 }
 
+/* Créneau sélectionné : vert fluo, texte foncé */
 .sel {
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-ink);
   border-color: var(--accent);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 10px 24px -12px rgba(43, 224, 106, 0.6);
 }
 
+/* Indisponible (déjà réservé) */
 .off {
   color: var(--soft);
   text-decoration: line-through;
-  opacity: 0.5;
+  opacity: 0.55;
   pointer-events: none;
 }
