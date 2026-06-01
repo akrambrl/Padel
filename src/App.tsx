@@ -58,6 +58,18 @@ export default function App() {
           Où veux-tu jouer&nbsp;?
         </h1>
         <p>12 clubs de padel autour de Casablanca.</p>
+
+        <div className={styles.stats}>
+          <span className={styles.stat} style={{ color: 'var(--c-yellow)' }}>
+            ⚡ <b>6</b>
+          </span>
+          <span className={styles.stat} style={{ color: 'var(--c-orange)' }}>
+            🏆 <b>0</b>
+          </span>
+          <span className={styles.stat} style={{ color: 'var(--c-violet)' }}>
+            Niveau <b>NC</b>
+          </span>
+        </div>
       </div>
 
       <div className={styles.searchWrap}>
@@ -106,7 +118,9 @@ export default function App() {
             <div className={styles.dbody}>
               <h2>{openClub.name}</h2>
               <div className={styles.dmeta}>
-                <span>★ {openClub.rating}</span>
+                <span>
+                  <i className={styles.star}>★</i> {openClub.rating}
+                </span>
                 <span className={styles.dot} />
                 <span>{openClub.location}</span>
               </div>

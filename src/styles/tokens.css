@@ -6,8 +6,8 @@
    ===================================================================== */
 :root {
   /* Fond bleu court de padel (dégradé du haut vers le bas) */
-  --bg-top: #1568b3;
-  --bg-bot: #0a3c70;
+  --bg-top: #14538c;
+  --bg-bot: #0a2e54;
   --bg: var(--bg-bot); /* fallback couleur unie */
 
   /* Texte (sur fond bleu) */
@@ -24,6 +24,15 @@
   --accent: #2be06a;
   --accent-ink: #053a1d;                /* texte foncé posé sur l'accent */
   --accent-soft: rgba(43, 224, 106, 0.16);
+
+  /* Palette secondaire (pour varier les couleurs, casser le "tout bleu") */
+  --c-green: #2be06a;
+  --c-orange: #fb923c;
+  --c-violet: #8b6cf6;
+  --c-pink: #fb6fa0;
+  --c-yellow: #ffd23f;
+  --c-teal: #16c9b0;
+  --star: #ffd23f;
 
   /* Bleu profond pour barres opaques (nav, toast) */
   --deep: #082c52;

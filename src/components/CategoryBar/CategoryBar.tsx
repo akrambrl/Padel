@@ -13,17 +13,25 @@ type CategoryBarProps = {
 export function CategoryBar({ categories, activeId, onChange }: CategoryBarProps) {
   return (
     <div className={`${styles.cats} no-scrollbar`}>
-      {categories.map((c) => (
-        <button
-          key={c.id}
-          type="button"
-          className={`${styles.cat} ${c.id === activeId ? styles.on : ''}`}
-          onClick={() => onChange(c.id)}
-        >
-          <span className={styles.ic}>{c.icon}</span>
-          {c.label}
-        </button>
-      ))}
+      {categories.map((c) => {
+        const active = c.id === activeId;
+        return (
+          <button
+            key={c.id}
+            type="button"
+            className={`${styles.cat} ${active ? styles.on : ''}`}
+            onClick={() => onChange(c.id)}
+          >
+            <span
+              className={styles.ic}
+              style={{ background: active ? 'rgba(0,0,0,.12)' : `${c.color}33` }}
+            >
+              {c.icon}
+            </span>
+            {c.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

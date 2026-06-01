@@ -36,7 +36,9 @@ export function ClubCard({ club, gradient, delay = 0, onClick }: ClubCardProps) 
             {club.location} · {club.type}
           </div>
           <div className={styles.row}>
-            <span className={styles.rate}>★ {club.rating}</span>
+            <span className={styles.rate}>
+              <i className={styles.star}>★</i> {club.rating}
+            </span>
             <span className={styles.price}>
               <b>{club.price} DH</b> / 1h30
             </span>
