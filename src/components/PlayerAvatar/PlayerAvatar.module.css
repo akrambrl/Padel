@@ -1,0 +1,48 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.av {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+
+.me {
+  background: var(--accent);
+}
+
+.photo {
+  background: #2c6fb0;
+}
+
+.ghost {
+  background: #e7eaee;
+}
+
+.empty {
+  background: #eef0f3;
+  border: 2px dashed #cfd4db;
+}
+
+.face {
+  filter: grayscale(0.1);
+}
+
+.plus {
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 24px;
+}
+
+/* Badge de niveau chevauchant le bas de l'avatar */
+.lvl {
+  margin-top: -13px;
+  z-index: 1;
+}

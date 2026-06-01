@@ -1,110 +1,19 @@
-/* Mise en page de la vitrine (accueil Recherche + fiche Réserver, style Anybuddy).
-   Les styles réutilisables vivent dans chaque composant du design system. */
-
-/* ----- Entête sombre ----- */
-.header {
-  padding: calc(16px + env(safe-area-inset-top)) 22px 18px;
-}
-
-.stats {
-  display: flex;
-  gap: 18px;
-}
-
-.stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #fff;
-  font-weight: 700;
-  font-size: 17px;
-}
-
-.stat b {
-  font-weight: 800;
-}
-
-.greeting {
-  font-family: var(--font-title);
-  font-weight: 800;
-  font-size: 30px;
-  letter-spacing: -0.015em;
-  color: #fff;
-  margin-top: 14px;
-}
-
-/* ----- Carte de recherche blanche ----- */
-.searchCard {
-  background: var(--panel);
-  margin: 0 14px;
-  border-radius: var(--r-lg);
-  padding: 16px 16px 18px;
-  box-shadow: var(--shadow);
-}
-
-.days {
-  margin-top: 14px;
-}
-
-.filters {
-  display: flex;
-  gap: 9px;
-  overflow-x: auto;
-  margin-top: 14px;
-}
-
-.chip {
-  flex: 0 0 auto;
-  border: 0;
-  border-radius: var(--r-pill);
-  padding: 11px 16px;
-  font-family: inherit;
-  font-weight: 800;
-  font-size: 13.5px;
-  cursor: pointer;
-}
-
-.chipAccent {
-  background: var(--accent);
-  color: var(--accent-ink);
-}
-
-.chipGhost {
-  background: #fff;
-  color: var(--ink);
-  border: 1px solid var(--panel-line);
-}
-
-.chipMuted {
-  background: var(--panel-2);
-  color: var(--muted);
-}
-
-.chipIcon {
-  background: #fff;
-  color: var(--ink);
-  border: 1px solid var(--panel-line);
-  padding: 11px 14px;
-}
-
-/* ----- Liste des clubs ----- */
-.list {
-  padding: 18px 14px 120px;
-}
-
-/* ----- Fiche club "Réserver" (feuille qui glisse) ----- */
 .detail {
   position: absolute;
   inset: 0;
   z-index: 30;
   background: var(--panel);
-  transform: translateX(100%);
-  transition: transform 0.34s cubic-bezier(0.32, 0.72, 0, 1);
   overflow-y: auto;
+  animation: slideIn 0.34s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-.show {
-  transform: none;
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
 }
 
 .dhero {
@@ -159,7 +68,6 @@
   margin-top: 4px;
 }
 
-/* Onglets segmentés Réserver / Infos club */
 .seg {
   display: flex;
   gap: 6px;
@@ -192,7 +100,6 @@
   margin-bottom: 16px;
 }
 
-/* Carte noire calendrier + créneaux */
 .calCard {
   background: var(--card-dark);
   border-radius: var(--r-lg);
@@ -213,10 +120,6 @@
   font-size: 17px;
   color: var(--ink);
   margin: 26px 0 14px;
-}
-
-.secIcon {
-  font-size: 18px;
 }
 
 .courtTeaser {
@@ -244,7 +147,80 @@
   border-radius: var(--r-pill);
 }
 
-/* CTA sticky */
+/* ----- Onglet Infos club ----- */
+.infos {
+  padding-top: 4px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.star {
+  font-style: normal;
+  color: var(--star);
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #c7ccd4;
+}
+
+.h3 {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--ink);
+  margin: 22px 0 12px;
+}
+
+.amen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.amen span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.amen span i {
+  font-style: normal;
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.text {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14.5px;
+}
+
+.contact {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.contactBtn {
+  flex: 1;
+  font-size: 15px;
+}
+
+/* ----- CTA sticky ----- */
 .bar {
   position: sticky;
   bottom: 0;

@@ -1,0 +1,57 @@
+.screen {
+  padding-bottom: 96px;
+}
+
+.header {
+  padding: calc(16px + env(safe-area-inset-top)) 22px 18px;
+}
+
+.stats {
+  display: flex;
+  gap: 18px;
+}
+
+.stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.stat b {
+  font-weight: 800;
+}
+
+.greeting {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: -0.015em;
+  color: #fff;
+  margin-top: 14px;
+}
+
+.searchCard {
+  background: var(--panel);
+  margin: 0 14px;
+  border-radius: var(--r-lg);
+  padding: 16px 16px 18px;
+  box-shadow: var(--shadow);
+}
+
+.days {
+  margin-top: 14px;
+}
+
+.filters {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  margin-top: 14px;
+}
+
+.list {
+  padding: 18px 14px 24px;
+}

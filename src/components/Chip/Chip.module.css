@@ -1,0 +1,32 @@
+.chip {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: var(--r-pill);
+  padding: 11px 16px;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 13.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.ghost {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--panel-line);
+}
+
+.muted {
+  background: var(--panel-2);
+  color: var(--muted);
+}
+
+.dark {
+  background: var(--ink);
+  color: #fff;
+}

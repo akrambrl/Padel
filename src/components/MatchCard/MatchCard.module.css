@@ -1,0 +1,109 @@
+.card {
+  background: #fff;
+  border-radius: var(--r-lg);
+  padding: 18px 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.racket {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+}
+
+.date {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.time {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.level {
+  margin-left: auto;
+  text-align: right;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.level small {
+  display: block;
+  font-size: 12px;
+}
+
+.players {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px 0 4px;
+}
+
+.vs {
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 20px;
+  color: #c7ccd4;
+  padding: 0 2px;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--panel-line);
+}
+
+.club {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.club b {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.court {
+  font-size: 18px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-soft);
+  color: #0c8a3e;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: var(--r-pill);
+}
+
+.action {
+  padding: 11px 22px;
+  font-size: 14px;
+}

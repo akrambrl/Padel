@@ -42,9 +42,19 @@ dans **`src/styles/tokens.css`** (la source de vérité visuelle).
 | `SlotGrid`     | Grille de créneaux (heure + prix), sélectionné en vert |
 | `Toast`        | Confirmation en bas d'écran |
 
-`src/App.tsx` est une **vitrine** qui assemble ces composants pour reproduire
-l'accueil **Recherche** + la fiche club **Réserver** (données fictives dans
-`src/data/clubs.ts`).
+### Écrans (`src/screens/`)
+
+`src/App.tsx` est la coquille : 4 onglets + la fiche club en surimpression.
+
+| Écran | Contenu |
+|-------|---------|
+| `RechercheScreen` | Accueil : recherche + jours + filtres + liste des clubs |
+| `MatchsScreen`    | Matchs Publics : rejoindre un match de même niveau, en créer un |
+| `DiscussionsScreen` | Groupes par ville + discussions récentes |
+| `ProfilScreen`    | Profil joueur (niveau, classement) + onglets Matchs/Stats/Dispo |
+| `ClubDetail`      | Fiche club « Réserver » (créneaux) / « Infos club » |
+
+Données fictives dans `src/data/` (`clubs.ts`, `matches.ts`, `navigation.ts`).
 
 ## Prochaines étapes (voir CLAUDE.md §7)
 
@@ -57,9 +67,10 @@ l'accueil **Recherche** + la fiche club **Réserver** (données fictives dans
 ```
 src/
   components/   # design system (1 dossier par composant)
+  screens/      # 1 écran par onglet + fiche club
   data/         # données fictives (Phase 1)
   styles/       # tokens.css (couleurs, ombres, polices) + global.css
-  App.tsx       # vitrine assemblant les composants
+  App.tsx       # coquille : onglets + fiche club
 docs/
-  padok-prototype-v3.html   # référence visuelle d'origine
+  padok-prototype-v3.html   # ancien prototype (clair), pour mémoire
 ```
