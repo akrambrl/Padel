@@ -1,9 +1,17 @@
 .phone {
   position: relative;
   width: 100%;
-  max-width: var(--phone-max);
+  max-width: var(--phone-max); /* colonne mobile (≈440px), centrée sur grand écran */
   min-height: 100vh;
-  background: var(--bg); /* fond noir (style Anybuddy) */
+  min-height: 100dvh; /* plein écran fiable sur navigateurs mobiles */
+  background: var(--bg);
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+}
+
+/* Sur grand écran : léger détachement de la colonne (pas un "téléphone") */
+@media (min-width: 480px) {
+  .phone {
+    min-height: 100dvh;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
 }

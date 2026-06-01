@@ -18,12 +18,21 @@ body {
 body {
   font-family: var(--font-ui);
   color: var(--ink);
-  background: #000000; /* noir derrière le cadre téléphone */
+  /* Sur mobile : invisible (la webapp remplit l'écran).
+     Sur ordinateur : encadre la colonne mobile centrée. */
+  background: var(--bg);
   display: flex;
   justify-content: center;
   align-items: flex-start;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Sur grand écran, un fond neutre pour bien détacher la colonne centrée */
+@media (min-width: 480px) {
+  body {
+    background: #07080a;
+  }
 }
 
 #root {
