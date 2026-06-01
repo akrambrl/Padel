@@ -1,0 +1,32 @@
+.slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.slot {
+  padding: 13px 4px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  text-align: center;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: 0.16s;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.sel {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.off {
+  color: var(--soft);
+  text-decoration: line-through;
+  opacity: 0.5;
+  pointer-events: none;
+}

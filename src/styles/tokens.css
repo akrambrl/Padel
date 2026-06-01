@@ -1,0 +1,36 @@
+/* =====================================================================
+   PADOK — Design tokens
+   Source de vérité visuelle. Extrait du prototype v3 (style premium clair).
+   Règle d'or : beaucoup de blanc, UNE couleur d'accent (vert profond) utilisée
+   avec parcimonie (prix / sélection / CTA), ombres très douces, filets fins.
+   ===================================================================== */
+:root {
+  /* Couleurs */
+  --bg: #fcfcfb;          /* fond global */
+  --surface: #ffffff;     /* cartes, barres */
+  --ink: #1c1c1a;         /* texte principal */
+  --muted: #75746e;       /* texte secondaire */
+  --soft: #9e9d96;        /* texte tertiaire / inactif */
+  --line: #ecebe7;        /* séparateurs en filet */
+  --accent: #0f7a63;      /* vert profond : prix, état sélectionné, CTA */
+  --accent-soft: #eaf4f0; /* fond accent léger */
+  --disabled: #d6d5cf;    /* boutons désactivés */
+
+  /* Ombres douces */
+  --shadow: 0 10px 30px -16px rgba(28, 28, 26, 0.22);
+  --shadow-sm: 0 6px 18px -12px rgba(28, 28, 26, 0.25);
+  --shadow-lg: 0 40px 90px -40px rgba(28, 28, 26, 0.45);
+
+  /* Rayons */
+  --r-sm: 12px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-pill: 50px;
+
+  /* Typographie */
+  --font-title: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Largeur "téléphone" (PWA mobile-first) */
+  --phone-max: 440px;
+}

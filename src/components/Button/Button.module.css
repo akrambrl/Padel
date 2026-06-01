@@ -1,0 +1,47 @@
+.btn {
+  border: 0;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15.5px;
+  padding: 16px 22px;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.full {
+  width: 100%;
+}
+
+/* Primary — CTA accent */
+.primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.primary:disabled {
+  background: var(--disabled);
+  color: #fff;
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+/* Ghost — secondaire, contour filet */
+.ghost {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.ghost:disabled {
+  color: var(--soft);
+  cursor: default;
+  transform: none;
+}

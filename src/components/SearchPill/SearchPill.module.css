@@ -1,0 +1,33 @@
+.search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: 15px 20px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.search svg {
+  flex: 0 0 auto;
+}
+
+.text {
+  flex: 1;
+}
+
+.text b {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.text small {
+  color: var(--soft);
+  font-size: 12.5px;
+  font-weight: 500;
+}

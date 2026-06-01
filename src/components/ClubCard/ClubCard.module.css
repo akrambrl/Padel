@@ -1,0 +1,98 @@
+.card {
+  display: block;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.55s forwards;
+}
+
+.card:last-child {
+  border-bottom: 0;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.photo {
+  position: relative;
+  height: 230px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+
+.heart {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+.info {
+  padding-top: 15px;
+}
+
+.l1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.info h3 {
+  font-weight: 700;
+  font-size: 16.5px;
+  letter-spacing: -0.01em;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.st {
+  color: var(--ink);
+}
+
+.loc {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.ty {
+  color: var(--soft);
+  font-weight: 500;
+  font-size: 13.5px;
+  margin-top: 2px;
+}
+
+.pr {
+  margin-top: 11px;
+  font-size: 15px;
+}
+
+.pr b {
+  font-weight: 800;
+}
+
+.pr span {
+  color: var(--muted);
+  font-weight: 500;
+}

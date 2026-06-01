@@ -1,0 +1,20 @@
+{
+  "name": "Padok — Padel Maroc",
+  "short_name": "Padok",
+  "description": "Trouve et réserve un terrain de padel au Maroc.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FCFCFB",
+  "theme_color": "#FCFCFB",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

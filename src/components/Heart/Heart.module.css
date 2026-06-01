@@ -1,0 +1,36 @@
+.heart {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease;
+}
+
+.heart:active {
+  transform: scale(0.8);
+}
+
+/* Posé directement sur l'image */
+.plain {
+  width: 34px;
+  height: 34px;
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.92);
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+}
+
+/* Bouton blanc rond flottant (fiche club) */
+.round {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface);
+  font-size: 18px;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.on {
+  color: var(--accent);
+}

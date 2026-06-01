@@ -1,0 +1,9 @@
+.phone {
+  position: relative;
+  width: 100%;
+  max-width: var(--phone-max);
+  min-height: 100vh;
+  background: var(--bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}

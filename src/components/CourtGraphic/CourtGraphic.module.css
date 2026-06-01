@@ -1,0 +1,43 @@
+.lines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  background-image: linear-gradient(#fff 1.5px, transparent 1.5px),
+    linear-gradient(90deg, #fff 1.5px, transparent 1.5px);
+  background-size: 44px 44px;
+}
+
+.court {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  height: 64%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+}
+
+/* Ligne centrale verticale (filet) */
+.court::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1.5px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateX(-50%);
+}
+
+/* Ligne horizontale */
+.court::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-50%);
+}
