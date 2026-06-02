@@ -78,3 +78,15 @@
   font-size: 18px;
   cursor: pointer;
 }
+
+/* Mobile : logo + menu seulement (comme Anybuddy mobile) */
+@media (max-width: 640px) {
+  .nav {
+    height: 64px;
+    padding: 0 18px;
+  }
+  .link,
+  .login {
+    display: none;
+  }
+}

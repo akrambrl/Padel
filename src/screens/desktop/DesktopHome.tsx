@@ -92,30 +92,32 @@ export function DesktopHome({ onOpenClub }: DesktopHomeProps) {
             <span className={styles.accent}>maintenant !</span>
           </h1>
 
-          <div className={styles.searchBar}>
-            <div className={styles.sbField}>
-              <span className={styles.sbIcon}>📍</span>
-              <div className={styles.sbCol}>
-                <span className={styles.sbLabel}>Où jouer</span>
-                <input
-                  className={styles.sbInput}
-                  value={f.query}
-                  placeholder="Rechercher une ville, un club…"
-                  onChange={(e) => f.setQuery(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && scrollToGrid()}
-                />
+          <div className={styles.searchWrap}>
+            <div className={styles.searchBar}>
+              <div className={styles.sbField}>
+                <span className={styles.sbIcon}>📍</span>
+                <div className={styles.sbCol}>
+                  <span className={styles.sbLabel}>Où jouer</span>
+                  <input
+                    className={styles.sbInput}
+                    value={f.query}
+                    placeholder="Rechercher une ville, un club…"
+                    onChange={(e) => f.setQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && scrollToGrid()}
+                  />
+                </div>
+              </div>
+              <div className={styles.sbDivider} />
+              <div className={styles.sbField}>
+                <span className={styles.sbIcon}>🗓️</span>
+                <div className={styles.sbCol}>
+                  <span className={styles.sbLabel}>Quand</span>
+                  <span className={styles.sbValue}>Lun. 1 Juin</span>
+                </div>
               </div>
             </div>
-            <div className={styles.sbDivider} />
-            <div className={styles.sbField}>
-              <span className={styles.sbIcon}>🗓️</span>
-              <div className={styles.sbCol}>
-                <span className={styles.sbLabel}>Quand</span>
-                <span className={styles.sbValue}>Lun. 1 Juin</span>
-              </div>
-            </div>
-            <button className={styles.sbBtn} onClick={scrollToGrid} aria-label="Rechercher">
-              🔍
+            <button className={styles.searchBtn} onClick={scrollToGrid}>
+              🔍 Rechercher
             </button>
           </div>
 
@@ -127,7 +129,7 @@ export function DesktopHome({ onOpenClub }: DesktopHomeProps) {
               <b>+1 000</b> joueurs
             </span>
             <span>
-              <b>{CLUBS.length}</b> clubs à Casablanca
+              <b>{CLUBS.length}</b> clubs au Maroc
             </span>
           </div>
           <p className={styles.tagline}>
@@ -142,7 +144,7 @@ export function DesktopHome({ onOpenClub }: DesktopHomeProps) {
         <div className={styles.listHead}>
           <h2>
             {f.results.length} club{f.results.length > 1 ? 's' : ''} de padel
-            {f.query.trim() ? ` · « ${f.query.trim()} »` : ' à Casablanca'}
+            {f.query.trim() ? ` · « ${f.query.trim()} »` : ' au Maroc'}
           </h2>
 
           <div className={styles.filters}>

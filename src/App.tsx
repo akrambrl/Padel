@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { PhoneFrame, BottomNav, Toast, useToast, DEFAULT_TABS } from './components';
-import { RechercheScreen } from './screens/RechercheScreen';
 import { MatchsScreen } from './screens/MatchsScreen';
 import { DiscussionsScreen } from './screens/DiscussionsScreen';
 import { ProfilScreen } from './screens/ProfilScreen';
@@ -11,9 +10,11 @@ import { useIsDesktop } from './hooks/useIsDesktop';
 import type { Club } from './data/clubs';
 
 /**
- * Coquille de l'app (style Anybuddy). Deux mises en page :
- * - PC : entête + hero + grille de clubs + fiche club pleine page.
- * - Mobile : colonne + nav du bas (Recherche, Matchs, Discussions, Profil).
+ * Coquille de l'app (style Anybuddy).
+ * - Accueil "Recherche" : landing (hero + recherche + clubs + sections),
+ *   responsive — même page sur mobile et PC.
+ * - Mobile : nav du bas (Recherche, Matchs, Discussions, Profil) + fiche club plein écran.
+ * - PC : fiche club pleine page (sans nav du bas).
  */
 export default function App() {
   const isDesktop = useIsDesktop();
@@ -46,11 +47,17 @@ export default function App() {
 
   // ----- Version mobile -----
   return (
-    <PhoneFrame>
-      {tab === 'recherche' && <RechercheScreen onOpenClub={setOpenClub} />}
-      {tab === 'matchs' && <MatchsScreen />}
-      {tab === 'discussions' && <DiscussionsScreen />}
-      {tab === 'profil' && <ProfilScreen />}
+    <>
+      {tab === 'recherche' ? (
+        // Accueil = landing responsive (façon Anybuddy)
+        <DesktopHome onOpenClub={setOpenClub} />
+      ) : (
+        <PhoneFrame>
+          {tab === 'matchs' && <MatchsScreen />}
+          {tab === 'discussions' && <DiscussionsScreen />}
+          {tab === 'profil' && <ProfilScreen />}
+        </PhoneFrame>
+      )}
 
       <BottomNav tabs={DEFAULT_TABS} activeId={tab} onChange={setTab} />
 
@@ -63,6 +70,6 @@ export default function App() {
       )}
 
       <Toast {...toastProps} />
-    </PhoneFrame>
+    </>
   );
 }
