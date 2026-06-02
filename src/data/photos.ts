@@ -7,6 +7,10 @@
 const px = (id: number) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=900`;
 
+/** Grande photo pour le hero de la version PC. */
+export const HERO_PHOTO =
+  'https://images.pexels.com/photos/32474981/pexels-photo-32474981.jpeg?auto=compress&cs=tinysrgb&w=1600';
+
 export const PADEL_PHOTOS = [
   px(32474981), // court intérieur bleu
   px(32897040), // court intérieur + raquette/balles

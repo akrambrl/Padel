@@ -1,50 +1,19 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { SearchPill, DayStrip, ClubCard, Chip, COURT_GRADIENTS } from '../components';
-import { CLUBS, DEMO_DAYS, type Club, type Period } from '../data/clubs';
+import { CLUBS, DEMO_DAYS, type Club } from '../data/clubs';
 import { PADEL_PHOTOS } from '../data/photos';
+import { useClubFilters, WHEN_OPTIONS } from '../hooks/useClubFilters';
 import styles from './RechercheScreen.module.css';
 
 type RechercheScreenProps = {
   onOpenClub: (club: Club) => void;
 };
 
-/** Normalise une chaîne pour comparer sans tenir compte des accents/majuscules. */
-function norm(s: string) {
-  return s
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase();
-}
-
-const WHEN_OPTIONS: { id: 'all' | Period; label: string }[] = [
-  { id: 'all', label: 'Peu importe' },
-  { id: 'morning', label: 'Matin' },
-  { id: 'afternoon', label: 'Après-midi' },
-  { id: 'evening', label: 'Soir' },
-];
-
-/** Écran d'accueil "Recherche" : entête + recherche + filtres + liste des clubs. */
+/** Écran d'accueil "Recherche" (mobile) : entête + recherche + filtres + liste. */
 export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
   const [day, setDay] = useState(0);
-  const [query, setQuery] = useState('');
-  const [when, setWhen] = useState<'all' | Period>('all');
   const [whenOpen, setWhenOpen] = useState(false);
-  const [indoor, setIndoor] = useState(false);
-  const [outdoor, setOutdoor] = useState(false);
-
-  const whenLabel =
-    when === 'all' ? 'Quand' : (WHEN_OPTIONS.find((o) => o.id === when)?.label ?? 'Quand');
-
-  const results = useMemo(() => {
-    const q = norm(query.trim());
-    return CLUBS.filter((c) => {
-      if (q && !norm(`${c.name} ${c.location} ${c.type}`).includes(q)) return false;
-      if (when !== 'all' && !c.periods.includes(when)) return false;
-      if (indoor && !outdoor && !/indoor/i.test(c.type)) return false;
-      if (outdoor && !indoor && !/outdoor/i.test(c.type)) return false;
-      return true;
-    });
-  }, [query, when, indoor, outdoor]);
+  const f = useClubFilters();
 
   return (
     <div className={styles.screen}>
@@ -61,7 +30,7 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
       </header>
 
       <div className={styles.searchCard}>
-        <SearchPill value={query} onChange={setQuery} />
+        <SearchPill value={f.query} onChange={f.setQuery} />
         <div className={styles.days}>
           <DayStrip days={DEMO_DAYS} activeIndex={day} onChange={setDay} tone="light" />
         </div>
@@ -69,10 +38,10 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
         <div className={`${styles.filters} no-scrollbar`}>
           <div className={styles.whenWrap}>
             <Chip
-              variant={when === 'all' ? 'ghost' : 'accent'}
+              variant={f.when === 'all' ? 'ghost' : 'accent'}
               onClick={() => setWhenOpen((o) => !o)}
             >
-              🕐 {whenLabel} ▾
+              🕐 {f.whenLabel} ▾
             </Chip>
             {whenOpen && (
               <>
@@ -85,9 +54,9 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
                   {WHEN_OPTIONS.map((o) => (
                     <button
                       key={o.id}
-                      className={`${styles.menuItem} ${o.id === when ? styles.menuOn : ''}`}
+                      className={`${styles.menuItem} ${o.id === f.when ? styles.menuOn : ''}`}
                       onClick={() => {
-                        setWhen(o.id);
+                        f.setWhen(o.id);
                         setWhenOpen(false);
                       }}
                     >
@@ -99,19 +68,19 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
             )}
           </div>
 
-          <Chip variant={indoor ? 'accent' : 'muted'} onClick={() => setIndoor((v) => !v)}>
+          <Chip variant={f.indoor ? 'accent' : 'muted'} onClick={() => f.setIndoor((v) => !v)}>
             int.
           </Chip>
-          <Chip variant={outdoor ? 'accent' : 'muted'} onClick={() => setOutdoor((v) => !v)}>
+          <Chip variant={f.outdoor ? 'accent' : 'muted'} onClick={() => f.setOutdoor((v) => !v)}>
             ext.
           </Chip>
         </div>
       </div>
 
       <div className={styles.list}>
-        {results.length > 0 ? (
-          results.map((club, i) => {
-            const idx = CLUBS.indexOf(club); // index stable (photo fixe par club)
+        {f.results.length > 0 ? (
+          f.results.map((club, i) => {
+            const idx = CLUBS.indexOf(club);
             return (
               <ClubCard
                 key={club.id}
@@ -127,8 +96,8 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
           <div className={styles.empty}>
             <div className={styles.emptyIcon}>🔍</div>
             <p>
-              {query.trim()
-                ? `Aucun club trouvé pour « ${query.trim()} »`
+              {f.query.trim()
+                ? `Aucun club trouvé pour « ${f.query.trim()} »`
                 : 'Aucun club ne correspond à ces filtres.'}
             </p>
           </div>

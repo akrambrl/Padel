@@ -12,7 +12,7 @@
   gap: 2px;
   padding: 12px 4px 10px;
   border-radius: var(--r-sm);
-  border: 0;
+  border: 1px solid var(--panel-line);
   background: #fff;
   cursor: pointer;
   transition: 0.14s;
@@ -44,6 +44,7 @@
 /* Créneau sélectionné : vert, texte foncé */
 .sel {
   background: var(--accent);
+  border-color: var(--accent);
 }
 .sel .time,
 .sel .price {
