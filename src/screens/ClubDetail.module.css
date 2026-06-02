@@ -1,7 +1,7 @@
 .detail {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 30;
+  z-index: 50;
   background: var(--panel);
   overflow-y: auto;
   animation: slideIn 0.34s cubic-bezier(0.32, 0.72, 0, 1);
