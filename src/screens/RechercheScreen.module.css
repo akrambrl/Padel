@@ -48,8 +48,58 @@
 .filters {
   display: flex;
   gap: 9px;
-  overflow-x: auto;
   margin-top: 14px;
+}
+
+/* Menu déroulant "Quand" */
+.whenWrap {
+  position: relative;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 41;
+  background: #fff;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--panel-line);
+  padding: 6px;
+  min-width: 170px;
+}
+
+.menuItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  padding: 11px 14px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: var(--panel-2);
+}
+
+.menuOn {
+  background: var(--accent-soft);
+  color: #0c8a3e;
 }
 
 .list {

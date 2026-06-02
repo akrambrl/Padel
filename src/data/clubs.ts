@@ -3,6 +3,10 @@
  * Le type `Club` est volontairement "résumé UI" ; il dérivera plus tard des
  * tables `clubs` / `courts` / `opening_hours` décrites dans CLAUDE.md.
  */
+
+/** Moment de la journée (pour le filtre "Quand"). */
+export type Period = 'morning' | 'afternoon' | 'evening';
+
 export type Club = {
   id: string;
   name: string;
@@ -16,6 +20,8 @@ export type Club = {
   /** Prix indicatif du créneau 1h30, en dirhams. */
   price: number;
   distanceKm: number;
+  /** Moments où le club a (fictivement) des créneaux libres aujourd'hui. */
+  periods: Period[];
 };
 
 export const CLUBS: Club[] = [
@@ -29,6 +35,7 @@ export const CLUBS: Club[] = [
     avis: 102,
     price: 300,
     distanceKm: 1.4,
+    periods: ['morning', 'afternoon', 'evening'],
   },
   {
     id: 'bouskoura-padel-arena',
@@ -40,6 +47,7 @@ export const CLUBS: Club[] = [
     avis: 67,
     price: 320,
     distanceKm: 8.0,
+    periods: ['afternoon', 'evening'],
   },
   {
     id: 'anfa-smash-center',
@@ -51,6 +59,7 @@ export const CLUBS: Club[] = [
     avis: 41,
     price: 280,
     distanceKm: 3.1,
+    periods: ['morning', 'evening'],
   },
   {
     id: 'racket-club-ain-diab',
@@ -62,6 +71,7 @@ export const CLUBS: Club[] = [
     avis: 25,
     price: 250,
     distanceKm: 5.2,
+    periods: ['morning', 'afternoon'],
   },
   {
     id: 'green-padel-sidi-maarouf',
@@ -73,6 +83,7 @@ export const CLUBS: Club[] = [
     avis: 38,
     price: 230,
     distanceKm: 6.8,
+    periods: ['evening'],
   },
   {
     id: 'marina-padel',
@@ -84,6 +95,7 @@ export const CLUBS: Club[] = [
     avis: 54,
     price: 340,
     distanceKm: 4.0,
+    periods: ['morning', 'afternoon', 'evening'],
   },
 ];
 

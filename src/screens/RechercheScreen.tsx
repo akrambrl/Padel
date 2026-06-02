@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { SearchPill, DayStrip, ClubCard, Chip, COURT_GRADIENTS } from '../components';
-import { CLUBS, DEMO_DAYS, type Club } from '../data/clubs';
+import { CLUBS, DEMO_DAYS, type Club, type Period } from '../data/clubs';
 import { PADEL_PHOTOS } from '../data/photos';
 import styles from './RechercheScreen.module.css';
 
@@ -16,16 +16,35 @@ function norm(s: string) {
     .toLowerCase();
 }
 
+const WHEN_OPTIONS: { id: 'all' | Period; label: string }[] = [
+  { id: 'all', label: 'Peu importe' },
+  { id: 'morning', label: 'Matin' },
+  { id: 'afternoon', label: 'Après-midi' },
+  { id: 'evening', label: 'Soir' },
+];
+
 /** Écran d'accueil "Recherche" : entête + recherche + filtres + liste des clubs. */
 export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
   const [day, setDay] = useState(0);
   const [query, setQuery] = useState('');
+  const [when, setWhen] = useState<'all' | Period>('all');
+  const [whenOpen, setWhenOpen] = useState(false);
+  const [indoor, setIndoor] = useState(false);
+  const [outdoor, setOutdoor] = useState(false);
+
+  const whenLabel =
+    when === 'all' ? 'Quand' : (WHEN_OPTIONS.find((o) => o.id === when)?.label ?? 'Quand');
 
   const results = useMemo(() => {
     const q = norm(query.trim());
-    if (!q) return CLUBS;
-    return CLUBS.filter((c) => norm(`${c.name} ${c.location} ${c.type}`).includes(q));
-  }, [query]);
+    return CLUBS.filter((c) => {
+      if (q && !norm(`${c.name} ${c.location} ${c.type}`).includes(q)) return false;
+      if (when !== 'all' && !c.periods.includes(when)) return false;
+      if (indoor && !outdoor && !/indoor/i.test(c.type)) return false;
+      if (outdoor && !indoor && !/outdoor/i.test(c.type)) return false;
+      return true;
+    });
+  }, [query, when, indoor, outdoor]);
 
   return (
     <div className={styles.screen}>
@@ -46,11 +65,46 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
         <div className={styles.days}>
           <DayStrip days={DEMO_DAYS} activeIndex={day} onChange={setDay} tone="light" />
         </div>
+
         <div className={`${styles.filters} no-scrollbar`}>
-          <Chip variant="ghost">🕐 Quand ▾</Chip>
-          <Chip variant="muted">int.</Chip>
-          <Chip variant="muted">ext.</Chip>
-          <Chip variant="ghost">⚙︎</Chip>
+          <div className={styles.whenWrap}>
+            <Chip
+              variant={when === 'all' ? 'ghost' : 'accent'}
+              onClick={() => setWhenOpen((o) => !o)}
+            >
+              🕐 {whenLabel} ▾
+            </Chip>
+            {whenOpen && (
+              <>
+                <button
+                  className={styles.backdrop}
+                  aria-label="Fermer"
+                  onClick={() => setWhenOpen(false)}
+                />
+                <div className={styles.menu}>
+                  {WHEN_OPTIONS.map((o) => (
+                    <button
+                      key={o.id}
+                      className={`${styles.menuItem} ${o.id === when ? styles.menuOn : ''}`}
+                      onClick={() => {
+                        setWhen(o.id);
+                        setWhenOpen(false);
+                      }}
+                    >
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          <Chip variant={indoor ? 'accent' : 'muted'} onClick={() => setIndoor((v) => !v)}>
+            int.
+          </Chip>
+          <Chip variant={outdoor ? 'accent' : 'muted'} onClick={() => setOutdoor((v) => !v)}>
+            ext.
+          </Chip>
         </div>
       </div>
 
@@ -72,7 +126,11 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
         ) : (
           <div className={styles.empty}>
             <div className={styles.emptyIcon}>🔍</div>
-            <p>Aucun club trouvé pour «&nbsp;{query.trim()}&nbsp;»</p>
+            <p>
+              {query.trim()
+                ? `Aucun club trouvé pour « ${query.trim()} »`
+                : 'Aucun club ne correspond à ces filtres.'}
+            </p>
           </div>
         )}
       </div>
