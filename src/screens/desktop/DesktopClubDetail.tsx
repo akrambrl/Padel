@@ -169,14 +169,14 @@ export function DesktopClubDetail({ club, onClose, onBooked }: Props) {
             <div className={styles.practCard}>
               <div>
                 <b>📍 Comment s'y rendre ?</b>
-                <small>{club.location}, Maroc</small>
+                <small>{club.address ?? `${club.location}, Maroc`}</small>
               </div>
               <span>›</span>
             </div>
             <div className={styles.practCard}>
               <div>
                 <b>📞 Contacter le club</b>
-                <small>Téléphone · WhatsApp</small>
+                <small>{club.phone ?? 'Téléphone · WhatsApp'}</small>
               </div>
               <span>›</span>
             </div>

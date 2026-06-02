@@ -118,14 +118,14 @@ export function ClubDetail({ club, onClose, onBooked }: ClubDetailProps) {
             </div>
 
             <div className={styles.h3}>Adresse</div>
-            <p className={styles.text}>{club.location}, Maroc</p>
+            <p className={styles.text}>{club.address ?? `${club.location}, Maroc`}</p>
 
             <div className={styles.h3}>Horaires</div>
             <p className={styles.text}>Tous les jours · 08h00 – 23h00</p>
 
             <div className={styles.contact}>
               <Button variant="ghost" className={styles.contactBtn}>
-                📞 Appeler
+                📞 {club.phone ?? 'Appeler'}
               </Button>
               <Button variant="ghost" className={styles.contactBtn}>
                 💬 WhatsApp
