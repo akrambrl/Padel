@@ -8,6 +8,8 @@ import styles from './DesktopHome.module.css';
 
 type DesktopHomeProps = {
   onOpenClub: (club: Club) => void;
+  /** Aller vers l'espace pro (clubs). */
+  onPro?: () => void;
 };
 
 const px = (id: number) =>
@@ -64,7 +66,7 @@ const STEPS = [
 ];
 
 /** Accueil version PC (façon Anybuddy) : hero + grille de clubs + sections landing. */
-export function DesktopHome({ onOpenClub }: DesktopHomeProps) {
+export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
   const f = useClubFilters();
   const [whenOpen, setWhenOpen] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -79,7 +81,7 @@ export function DesktopHome({ onOpenClub }: DesktopHomeProps) {
 
   return (
     <div className={styles.page}>
-      <TopNav />
+      <TopNav onPro={onPro} />
 
       {/* HERO */}
       <section className={styles.hero}>
@@ -303,6 +305,19 @@ export function DesktopHome({ onOpenClub }: DesktopHomeProps) {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* CTA CLUBS */}
+      <section className={styles.clubCta}>
+        <span className={styles.clubPill}>POUR LES CLUBS</span>
+        <h2>Vous gérez un club&nbsp;?</h2>
+        <p>
+          Recevez vos réservations en ligne et remplissez vos créneaux creux. Gratuit, et
+          fini WhatsApp.
+        </p>
+        <button className={styles.clubBtn} onClick={onPro}>
+          🏟️ Découvrir l’espace club
+        </button>
       </section>
 
       <footer className={styles.footer}>

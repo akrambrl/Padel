@@ -6,18 +6,22 @@ import { ProfilScreen } from './screens/ProfilScreen';
 import { ClubDetail } from './screens/ClubDetail';
 import { DesktopHome } from './screens/desktop/DesktopHome';
 import { DesktopClubDetail } from './screens/desktop/DesktopClubDetail';
+import { ProLanding } from './screens/pro/ProLanding';
+import { ClubDashboard } from './screens/pro/ClubDashboard';
 import { useIsDesktop } from './hooks/useIsDesktop';
 import type { Club } from './data/clubs';
 
+type View = 'app' | 'pro' | 'club';
+
 /**
- * Coquille de l'app (style Anybuddy).
- * - Accueil "Recherche" : landing (hero + recherche + clubs + sections),
- *   responsive — même page sur mobile et PC.
- * - Mobile : nav du bas (Recherche, Matchs, Discussions, Profil) + fiche club plein écran.
- * - PC : fiche club pleine page (sans nav du bas).
+ * Coquille de l'app.
+ * - 'app'  : côté joueur (landing responsive + nav du bas sur mobile).
+ * - 'pro'  : landing pour les clubs (pourquoi quitter WhatsApp).
+ * - 'club' : espace pro / back-office (agenda + réservations).
  */
 export default function App() {
   const isDesktop = useIsDesktop();
+  const [view, setView] = useState<View>('app');
   const [tab, setTab] = useState('recherche');
   const [openClub, setOpenClub] = useState<Club | null>(null);
   const { toast, props: toastProps } = useToast();
@@ -27,7 +31,15 @@ export default function App() {
     setOpenClub(null);
   }
 
-  // ----- Version PC -----
+  // ----- Espace pro (clubs) -----
+  if (view === 'pro') {
+    return <ProLanding onBack={() => setView('app')} onEnterClub={() => setView('club')} />;
+  }
+  if (view === 'club') {
+    return <ClubDashboard onBack={() => setView('pro')} />;
+  }
+
+  // ----- Côté joueur, version PC -----
   if (isDesktop) {
     return (
       <>
@@ -38,19 +50,18 @@ export default function App() {
             onBooked={handleBooked}
           />
         ) : (
-          <DesktopHome onOpenClub={setOpenClub} />
+          <DesktopHome onOpenClub={setOpenClub} onPro={() => setView('pro')} />
         )}
         <Toast {...toastProps} />
       </>
     );
   }
 
-  // ----- Version mobile -----
+  // ----- Côté joueur, version mobile -----
   return (
     <>
       {tab === 'recherche' ? (
-        // Accueil = landing responsive (façon Anybuddy)
-        <DesktopHome onOpenClub={setOpenClub} />
+        <DesktopHome onOpenClub={setOpenClub} onPro={() => setView('pro')} />
       ) : (
         <PhoneFrame>
           {tab === 'matchs' && <MatchsScreen />}
