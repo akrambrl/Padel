@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DayStrip, MatchCard, Chip } from '../components';
+import { DayStrip, MatchCard } from '../components';
 import { DEMO_DAYS } from '../data/clubs';
 import { SAME_LEVEL_MATCHES, PROFILE } from '../data/matches';
 import styles from './MatchsScreen.module.css';
@@ -31,7 +31,6 @@ export function MatchsScreen() {
           <DayStrip days={DEMO_DAYS} activeIndex={day} onChange={setDay} tone="light" />
         </div>
         <div className={styles.filters}>
-          <Chip variant="accent">Padel ▾</Chip>
           <span className={styles.class}>
             Class. <b>{PROFILE.classement}</b>
           </span>

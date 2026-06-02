@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CourtGraphic } from '../components/CourtGraphic/CourtGraphic';
-import { DayStrip, SlotGrid, Button, Heart, Chip, COURT_GRADIENTS } from '../components';
+import { DayStrip, SlotGrid, Button, Heart, COURT_GRADIENTS } from '../components';
 import { CLUBS, DEMO_DAYS, DEMO_SLOTS, type Club } from '../data/clubs';
 import { PADEL_PHOTOS } from '../data/photos';
 import styles from './ClubDetail.module.css';
@@ -72,10 +72,6 @@ export function ClubDetail({ club, onClose, onBooked }: ClubDetailProps) {
 
         {view === 'reserver' ? (
           <>
-            <div className={styles.padelPill}>
-              <Chip variant="accent">Padel ▾</Chip>
-            </div>
-
             <div className={styles.calCard}>
               <DayStrip
                 days={DEMO_DAYS.slice(1)}

@@ -106,10 +106,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-.padelPill {
-  margin-bottom: 16px;
-}
-
 .calCard {
   background: var(--card-dark);
   border-radius: var(--r-lg);

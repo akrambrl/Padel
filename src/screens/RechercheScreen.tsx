@@ -47,7 +47,6 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
           <DayStrip days={DEMO_DAYS} activeIndex={day} onChange={setDay} tone="light" />
         </div>
         <div className={`${styles.filters} no-scrollbar`}>
-          <Chip variant="accent">Padel ▾</Chip>
           <Chip variant="ghost">🕐 Quand ▾</Chip>
           <Chip variant="muted">int.</Chip>
           <Chip variant="muted">ext.</Chip>
