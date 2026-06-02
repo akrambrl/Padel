@@ -11,14 +11,6 @@ export function MatchsScreen() {
   return (
     <div className={styles.screen}>
       <header className={styles.header}>
-        <div className={styles.stats}>
-          <span className={styles.stat}>
-            ⚡ <b>{PROFILE.eclairs}</b>
-          </span>
-          <span className={styles.stat}>
-            🏆 <b>{PROFILE.trophees}</b>
-          </span>
-        </div>
         <h1 className={styles.hero}>
           <span className={styles.accent}>Pas de partenaire&nbsp;?</span>
           <br />

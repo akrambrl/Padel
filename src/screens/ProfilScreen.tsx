@@ -11,14 +11,6 @@ export function ProfilScreen() {
     <div className={styles.screen}>
       <header className={styles.header}>
         <div className={styles.watermark}>PADOK</div>
-        <div className={styles.stats}>
-          <span className={styles.stat}>
-            ⚡ <b>{PROFILE.eclairs}</b>
-          </span>
-          <span className={styles.stat}>
-            🏆 <b>{PROFILE.trophees}</b>
-          </span>
-        </div>
         <div className={styles.me}>
           <div className={styles.avatar}>🙂</div>
           <div>

@@ -18,14 +18,6 @@ export function RechercheScreen({ onOpenClub }: RechercheScreenProps) {
   return (
     <div className={styles.screen}>
       <header className={styles.header}>
-        <div className={styles.stats}>
-          <span className={styles.stat}>
-            ⚡ <b>6</b>
-          </span>
-          <span className={styles.stat}>
-            🏆 <b>0</b>
-          </span>
-        </div>
         <h1 className={styles.greeting}>Let&apos;s go Akram&nbsp;! 🔥</h1>
       </header>
 
