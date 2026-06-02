@@ -89,9 +89,8 @@ export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
         <div className={styles.heroVeil} />
         <div className={styles.heroInner}>
           <h1 className={styles.title}>
-            Réserve un terrain
-            <br />
-            <span className={styles.accent}>maintenant !</span>
+            <span className={styles.titleLine}>Réserve un terrain</span>
+            <span className={`${styles.titleLine} ${styles.titleAccent}`}>maintenant !</span>
           </h1>
 
           <div className={styles.searchWrap}>

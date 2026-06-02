@@ -39,13 +39,37 @@
   color: #fff;
 }
 
+/* Titre "sticker" façon Anybuddy : badges noirs, légèrement inclinés, ombre portée */
 .title {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform: rotate(-2.5deg);
   font-family: var(--font-title);
-  font-weight: 900;
-  font-size: 64px;
-  line-height: 0.98;
-  letter-spacing: -0.02em;
   text-transform: uppercase;
+}
+
+.titleLine {
+  display: inline-block;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #fff;
+  background: #0a0a0b;
+  padding: 8px 22px;
+  border-radius: 16px;
+  box-shadow: 0 16px 34px -10px rgba(0, 0, 0, 0.65);
+}
+
+.titleLine:nth-child(2) {
+  transform: rotate(2deg);
+}
+
+.titleAccent {
+  color: var(--accent);
 }
 
 .accent {
@@ -619,8 +643,8 @@
 }
 
 @media (max-width: 1100px) {
-  .title {
-    font-size: 48px;
+  .titleLine {
+    font-size: 44px;
   }
   .cityGrid,
   .whyGrid {
@@ -639,8 +663,9 @@
   .heroInner {
     padding: 40px 18px;
   }
-  .title {
-    font-size: 36px;
+  .titleLine {
+    font-size: 31px;
+    padding: 7px 16px;
   }
 
   /* Recherche : carte verticale + bouton RECHERCHER pleine largeur */
