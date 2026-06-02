@@ -16,9 +16,14 @@ const px = (id: number) =>
 const CITIES = [
   { name: 'Casablanca', grad: 'linear-gradient(135deg,#c9a36a,#6f5026)', img: px(19657040) },
   { name: 'Rabat', grad: 'linear-gradient(135deg,#6aa0c9,#2c4f6f)', img: px(12504063) },
-  { name: 'Marrakech', grad: 'linear-gradient(135deg,#d98a5a,#9c3f24)', img: px(29824127) },
+  { name: 'Marrakech', grad: 'linear-gradient(135deg,#d98a5a,#9c3f24)', img: px(15360680) },
   { name: 'Tanger', grad: 'linear-gradient(135deg,#6ac9a0,#1c6f57)', img: px(13142301) },
-  { name: 'Agadir', grad: 'linear-gradient(135deg,#d9c05a,#9c7a24)', img: px(30557503) },
+  {
+    name: 'Agadir',
+    grad: 'linear-gradient(135deg,#d9c05a,#9c7a24)',
+    // Kasbah Agadir Oufella illuminé sur la colline (Wikimedia Commons)
+    img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Lighting_walls_Agadir_Kasbah_night.jpg?width=800',
+  },
   { name: 'Fès', grad: 'linear-gradient(135deg,#b06ac9,#5a2c6f)', img: px(30398385) },
 ];
 
