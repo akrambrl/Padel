@@ -40,9 +40,9 @@
   --shadow-sm: 0 8px 20px -14px rgba(8, 12, 20, 0.45);
   --shadow-lg: 0 40px 90px -40px rgba(0, 0, 0, 0.6);
 
-  /* Typographie */
-  --font-title: 'Archivo', system-ui, sans-serif;
-  --font-ui: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Typographie — Poppins (arrondie/amicale, façon Anybuddy) */
+  --font-title: 'Poppins', system-ui, sans-serif;
+  --font-ui: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Largeur "téléphone" (PWA mobile-first) */
   --phone-max: 440px;
