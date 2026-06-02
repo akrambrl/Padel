@@ -10,13 +10,16 @@ type DesktopHomeProps = {
   onOpenClub: (club: Club) => void;
 };
 
+const px = (id: number) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800`;
+
 const CITIES = [
-  { name: 'Casablanca', grad: 'linear-gradient(135deg,#c9a36a,#6f5026)' },
-  { name: 'Rabat', grad: 'linear-gradient(135deg,#6aa0c9,#2c4f6f)' },
-  { name: 'Marrakech', grad: 'linear-gradient(135deg,#d98a5a,#9c3f24)' },
-  { name: 'Tanger', grad: 'linear-gradient(135deg,#6ac9a0,#1c6f57)' },
-  { name: 'Agadir', grad: 'linear-gradient(135deg,#d9c05a,#9c7a24)' },
-  { name: 'Fès', grad: 'linear-gradient(135deg,#b06ac9,#5a2c6f)' },
+  { name: 'Casablanca', grad: 'linear-gradient(135deg,#c9a36a,#6f5026)', img: px(19657040) },
+  { name: 'Rabat', grad: 'linear-gradient(135deg,#6aa0c9,#2c4f6f)', img: px(12504063) },
+  { name: 'Marrakech', grad: 'linear-gradient(135deg,#d98a5a,#9c3f24)', img: px(29824127) },
+  { name: 'Tanger', grad: 'linear-gradient(135deg,#6ac9a0,#1c6f57)', img: px(13142301) },
+  { name: 'Agadir', grad: 'linear-gradient(135deg,#d9c05a,#9c7a24)', img: px(30557503) },
+  { name: 'Fès', grad: 'linear-gradient(135deg,#b06ac9,#5a2c6f)', img: px(30398385) },
 ];
 
 const FEATURES = [
@@ -219,6 +222,13 @@ export function DesktopHome({ onOpenClub }: DesktopHomeProps) {
               style={{ background: c.grad }}
               onClick={() => pickCity(c.name)}
             >
+              <img
+                className={styles.cityImg}
+                src={c.img}
+                alt={c.name}
+                loading="lazy"
+                onError={(e) => (e.currentTarget.style.display = 'none')}
+              />
               <span className={styles.cityVeil} />
               <span className={styles.cityName}>
                 <span className={styles.pin} /> {c.name}
