@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { ClubCard, Chip, COURT_GRADIENTS } from '../../components';
 import { TopNav } from '../../components/desktop/TopNav';
 import { CLUBS, type Club } from '../../data/clubs';
 import { PADEL_PHOTOS, HERO_PHOTO } from '../../data/photos';
-import { useClubFilters, WHEN_OPTIONS } from '../../hooks/useClubFilters';
+import { useClubFilters, WHEN_OPTIONS, norm } from '../../hooks/useClubFilters';
 import styles from './DesktopHome.module.css';
 
 type DesktopHomeProps = {
@@ -65,14 +65,33 @@ const STEPS = [
   },
 ];
 
+/** Suggestions d'autocomplétion : villes + clubs. */
+const SUGGESTIONS: { label: string; type: 'ville' | 'club' }[] = [
+  ...CITIES.map((c) => ({ label: c.name, type: 'ville' as const })),
+  ...CLUBS.map((c) => ({ label: c.name, type: 'club' as const })),
+];
+
 /** Accueil version PC (façon Anybuddy) : hero + grille de clubs + sections landing. */
 export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
   const f = useClubFilters();
   const [whenOpen, setWhenOpen] = useState(false);
+  const [sugOpen, setSugOpen] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  const suggestions = useMemo(() => {
+    const q = norm(f.query.trim());
+    if (!q) return [];
+    return SUGGESTIONS.filter((s) => norm(s.label).includes(q)).slice(0, 7);
+  }, [f.query]);
 
   const scrollToGrid = () =>
     gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  function chooseSuggestion(label: string) {
+    f.setQuery(label);
+    setSugOpen(false);
+    scrollToGrid();
+  }
 
   const pickCity = (city: string) => {
     f.setQuery(city);
@@ -103,8 +122,18 @@ export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
                     className={styles.sbInput}
                     value={f.query}
                     placeholder="Rechercher une ville, un club…"
-                    onChange={(e) => f.setQuery(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && scrollToGrid()}
+                    onChange={(e) => {
+                      f.setQuery(e.target.value);
+                      setSugOpen(true);
+                    }}
+                    onFocus={() => setSugOpen(true)}
+                    onBlur={() => window.setTimeout(() => setSugOpen(false), 150)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        setSugOpen(false);
+                        scrollToGrid();
+                      }
+                    }}
                   />
                 </div>
               </div>
@@ -120,6 +149,28 @@ export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
             <button className={styles.searchBtn} onClick={scrollToGrid}>
               🔍 Rechercher
             </button>
+
+            {sugOpen && suggestions.length > 0 && (
+              <div className={styles.suggest}>
+                {suggestions.map((s) => (
+                  <button
+                    key={`${s.type}-${s.label}`}
+                    type="button"
+                    className={styles.sugItem}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      chooseSuggestion(s.label);
+                    }}
+                  >
+                    <span className={styles.sugIcon}>{s.type === 'ville' ? '📍' : '🎾'}</span>
+                    <span className={styles.sugText}>
+                      <b>{s.label}</b>
+                      <small>{s.type === 'ville' ? 'Ville' : 'Club'}</small>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={styles.stats}>
