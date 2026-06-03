@@ -141,6 +141,63 @@
   font-weight: 600;
 }
 
+/* Recherche plein écran (mobile) */
+.searchOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.soBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: calc(12px + env(safe-area-inset-top)) 14px 12px;
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.soIcon {
+  font-size: 18px;
+}
+
+.soInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.soCancel {
+  flex: 0 0 auto;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.soList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.soEmpty {
+  padding: 30px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-weight: 600;
+}
+
 .searchBar {
   display: flex;
   align-items: stretch;

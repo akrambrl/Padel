@@ -76,6 +76,7 @@ export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
   const f = useClubFilters();
   const [whenOpen, setWhenOpen] = useState(false);
   const [sugOpen, setSugOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false); // recherche plein écran (mobile)
   const gridRef = useRef<HTMLDivElement>(null);
 
   const suggestions = useMemo(() => {
@@ -90,8 +91,17 @@ export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
   function chooseSuggestion(label: string) {
     f.setQuery(label);
     setSugOpen(false);
+    setSearchOpen(false);
     scrollToGrid();
   }
+
+  // Sur mobile, ouvrir la recherche plein écran au lieu du clavier inline
+  const isMobile = () =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
+
+  const overlayList = f.query.trim()
+    ? suggestions
+    : SUGGESTIONS.filter((s) => s.type === 'ville');
 
   const pickCity = (city: string) => {
     f.setQuery(city);
@@ -126,7 +136,14 @@ export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
                       f.setQuery(e.target.value);
                       setSugOpen(true);
                     }}
-                    onFocus={() => setSugOpen(true)}
+                    onFocus={(e) => {
+                      if (isMobile()) {
+                        e.target.blur();
+                        setSearchOpen(true);
+                      } else {
+                        setSugOpen(true);
+                      }
+                    }}
                     onBlur={() => window.setTimeout(() => setSugOpen(false), 150)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
@@ -150,7 +167,7 @@ export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
               🔍 Rechercher
             </button>
 
-            {sugOpen && suggestions.length > 0 && (
+            {sugOpen && !searchOpen && suggestions.length > 0 && (
               <div className={styles.suggest}>
                 {suggestions.map((s) => (
                   <button
@@ -376,6 +393,51 @@ export function DesktopHome({ onOpenClub, onPro }: DesktopHomeProps) {
         </div>
         <p>Padel au Maroc · Casablanca · Phase 1 — annuaire & demande de réservation</p>
       </footer>
+
+      {/* Recherche plein écran (mobile) — visible au-dessus du clavier */}
+      {searchOpen && (
+        <div className={styles.searchOverlay}>
+          <div className={styles.soBar}>
+            <span className={styles.soIcon}>🔍</span>
+            <input
+              className={styles.soInput}
+              value={f.query}
+              autoFocus
+              placeholder="Ville, quartier, club…"
+              onChange={(e) => f.setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  setSearchOpen(false);
+                  scrollToGrid();
+                }
+              }}
+            />
+            <button className={styles.soCancel} onClick={() => setSearchOpen(false)}>
+              Annuler
+            </button>
+          </div>
+          <div className={styles.soList}>
+            {overlayList.length === 0 ? (
+              <div className={styles.soEmpty}>Aucun résultat pour « {f.query.trim()} »</div>
+            ) : (
+              overlayList.map((s) => (
+                <button
+                  key={`${s.type}-${s.label}`}
+                  type="button"
+                  className={styles.sugItem}
+                  onClick={() => chooseSuggestion(s.label)}
+                >
+                  <span className={styles.sugIcon}>{s.type === 'ville' ? '📍' : '🎾'}</span>
+                  <span className={styles.sugText}>
+                    <b>{s.label}</b>
+                    <small>{s.type === 'ville' ? 'Ville' : 'Club'}</small>
+                  </span>
+                </button>
+              ))
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
